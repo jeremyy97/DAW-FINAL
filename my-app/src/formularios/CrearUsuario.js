@@ -35,7 +35,7 @@ class CrearUsuario extends Component{
     render(){
         return(
             <div class="container">
-                <form class="form-horizontal">
+                <form class="card">
                     <fieldset>
                         <legend>Usuarios</legend>
                         <label class="col-md-4 control-label" for="usuario">Crear nueva cuenta </label>  
@@ -104,7 +104,7 @@ class CrearUsuario extends Component{
                             </tr>
                             <tr>
                             <td colspan="2">
-                                <div>
+                                <div class="form-group">
                                 <button id="crearUsuario" name="crearUsuario" class="btn btn-primary">Crear Usuario</button>
                                 </div>
                             </td>
