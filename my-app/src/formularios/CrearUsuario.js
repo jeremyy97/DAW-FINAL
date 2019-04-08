@@ -4,10 +4,12 @@ class CrearUsuario extends Component{
     constructor(){
         super();
         this.state={
-            titulo:'',
-            responsable:'',
-            descripcion:'',
-            prioridad:'baja'
+            usuario:'',
+            contrasenna:'',
+            contrasennaConfirmar    :'',
+            email:'',
+            preguntaSeguridad: '',
+            respuestaSeguridad: ''
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
@@ -25,10 +27,12 @@ class CrearUsuario extends Component{
         e.preventDefault();
         this.props.onAddTareas(this.state)
         this.setState({
-            titulo:'',
-            responsable:'',
-            descripcion:'',
-            prioridad:'baja'
+            usuario:'',
+            contrasenna:'',
+            contrasennaConfirmar    :'',
+            email:'',
+            preguntaSeguridad: '',
+            respuestaSeguridad: ''
         }) 
     }
 
