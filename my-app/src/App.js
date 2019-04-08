@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import CrearUsuario from './formularios/CrearUsuario';
+
 class App extends Component {
   render() {
     return (
@@ -167,7 +169,7 @@ class App extends Component {
               
           
           {/*<!--PEGAR AQUI CODIGO DE FORMS-->*/}
-          
+          <CrearUsuario></CrearUsuario>
           
           
           {/*<img src=".\logofondoblancotrans.png" width="750px" style="padding: 70px;"/>*/}
