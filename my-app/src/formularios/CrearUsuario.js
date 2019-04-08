@@ -34,77 +34,77 @@ class CrearUsuario extends Component{
 
     render(){
         return(
-            <div >
+            <div class="container">
                 <form class="form-horizontal">
                     <fieldset>
                         <legend>Usuarios</legend>
                         <label class="col-md-4 control-label" for="usuario">Crear nueva cuenta </label>  
                         <br></br>
-                        <div class="form-group" >
-                        <table>
+                        <div>
+                        <table align="center" >
                             <tr>
-                            <td>
-                                <label class="col-md-4 control-label" for="usuario">Usuario: </label> 
+                            <td align="left">
+                                <label class="" for="usuario">Usuario: </label> 
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-4">
-                                <input id="usuario" name="usuario" type="text" placeholder="" class="form-control input-md" required=""/>
+                            <td >
+                                <div class="form-group">
+                                <input id="usuario" name="usuario" type="text" placeholder="" class="form-control" required=""/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
-                            <td>
-                                <label class="col-md-4 control-label" for="contrasenna">Contraseña: </label>  
+                            <td align="left"> 
+                                <label class="" for="contrasenna">Contraseña: </label>  
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-4">
-                                <input id="contrasenna" name="contrasenna" type="text" placeholder="" class="form-control input-md" required=""/>
+                            <td >
+                                <div class="form-group">
+                                <input id="contrasenna" name="contrasenna" type="text" placeholder="" class="form-control" required=""/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
-                            <td>
-                                <label class="col-md-4 control-label" for="confirmarContrasenna">Confirmar Contraseña: </label>  
+                            <td align="left">
+                                <label class="" for="confirmarContrasenna">Confirmar Contraseña: </label>  
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-4">
-                                <input id="confirmarContrasenna" name="confirmarContrasenna" type="text" placeholder=" " class="form-control input-md" required=""/>
-                            </div>
+                            <td>
+                                <div class="form-group">
+                                <input id="confirmarContrasenna" name="confirmarContrasenna" type="text" placeholder=" " class="form-control" required=""/>
+                                </div>
                             </td>
                             </tr>
                             <tr>
-                            <td>
-                                <label class="col-md-4 control-label" for="email">Email:</label>      
+                            <td align="left">
+                                <label class="" for="email">Email:</label>      
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-4">
-                                <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required=""/>
+                            <td>
+                                <div class="form-group">
+                                <input id="email" name="email" type="text" placeholder="" class="form-control" required=""/>
+                                </div>      
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="" for="preguntaSeguridad">Pregunta de Seguridad: </label>  
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                <input id="preguntaSeguridad" name="preguntaSeguridad" type="text" placeholder="" class="form-control" required=""/>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td>
-                                <label class="col-md-4 control-label" for="preguntaSeguridad">Pregunta de Seguridad: </label>  
+                                <label class="" for="respuestaSeguridad">Respuesta de Seguridad: </label>
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-4">
-                                <input id="preguntaSeguridad" name="preguntaSeguridad" type="text" placeholder="" class="form-control input-md" required=""/>
-                                </div>      
-                            </td>
-                            </tr>
-                            <tr>
-                            <td>
-                                <label class="col-md-4 control-label" for="respuestaSeguridad">Respuesta de Seguridad: </label>
-                            </td>
-                            <td class="col-md-4"> 
-                                <div class="col-md-4">
-                                <input id="respuestaSeguridad" name="respuestaSeguridad" type="text" placeholder="" class="form-control input-md" required=""/>  
+                            <td> 
+                                <div class="form-group">
+                                <input id="respuestaSeguridad" name="respuestaSeguridad" type="text" placeholder="" class="form-control" required=""/>  
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td colspan="2">
-                                <div class="col-md-4">
+                                <div>
                                 <button id="crearUsuario" name="crearUsuario" class="btn btn-primary">Crear Usuario</button>
                                 </div>
                             </td>
