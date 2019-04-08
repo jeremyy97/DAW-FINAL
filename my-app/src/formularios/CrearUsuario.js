@@ -50,7 +50,7 @@ class CrearUsuario extends Component{
                             <td align="left">
                                 <label class="" for="usuario">Usuario: </label> 
                             </td>
-                            <td >
+                            <td>
                                 <div class="form-group">
                                 <input id="usuario" name="usuario" type="text" placeholder="" class="form-control" required=""/>
                                 </div>
@@ -80,7 +80,7 @@ class CrearUsuario extends Component{
                             <td align="left">
                                 <label class="" for="email">Email:</label>      
                             </td>
-                            <td>
+                            <td >
                                 <div class="form-group">
                                 <input id="email" name="email" type="text" placeholder="" class="form-control" required=""/>
                                 </div>      

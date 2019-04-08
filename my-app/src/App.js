@@ -5,9 +5,26 @@ import './App.css';
 import CrearUsuario from './formularios/CrearUsuario';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      contenido : (<div></div>)
+    };
+    this.mostrarContenido = this.mostrarContenido.bind(this);
+  }
+
+  mostrarContenido(e){
+    const {value,name} = e.target;
+    console.log(name,value)
+    this.setState({
+      contenido: <CrearUsuario></CrearUsuario>
+    })  
+  }
+
+  
+
   render() {
     return (
-      
       <div className="App">
         <div id="wrapper">
           <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -41,7 +58,7 @@ class App extends Component {
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                 
-                  <a class="collapse-item" href="buttons.html">Crear Usuarios</a>
+                  <a class="collapse-item" onClick={this.mostrarContenido}>Crear Usuarios</a>
                   <a class="collapse-item" href="cards.html">Asignar Roles</a>
                 </div>
               </div>
@@ -169,8 +186,11 @@ class App extends Component {
               
           
           {/*<!--PEGAR AQUI CODIGO DE FORMS-->*/}
-          <CrearUsuario></CrearUsuario>
           
+          <div>
+            {this.state.contenido}
+          </div>
+ 
           
           {/*<img src=".\logofondoblancotrans.png" width="750px" style="padding: 70px;"/>*/}
           
