@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
 
+import NuevoLibro from './NuevoLibro';
+
 class Libros extends Component{
     constructor(){
         super();
         this.state={
-            
+            contenido : (<div></div>)
         }
-        
+        this.mostrarNuevoLibro = this.mostrarNuevoLibro.bind(this);
     }
+
+    mostrarNuevoLibro(){
+        this.setState({
+          contenido: <NuevoLibro></NuevoLibro>
+        })
+    }
+
     render(){
         return(
             <div class="container">
                 <form class="card">
-                <fieldset>
-                    <legend>Lista de libros</legend>
+                    <fieldset>
+                        <legend>Lista de libros</legend>
                         <table id="idTable" class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -45,10 +54,13 @@ class Libros extends Component{
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="nuevo"></label>
                             <div class="col-md-4">
-                                <button id="nuevo" name="nuevo" class="btn btn-primary">Nuevo</button>
+                                <a id="nuevo" name="nuevo" class="btn btn-primary" onClick={this.mostrarNuevoLibro}>Nuevo</a>
                             </div>
                         </div>
                     </fieldset>
+                    <div>
+                        {this.state.contenido}
+                    </div>
                 </form>
                 <script src="vendor/jquery/jquery.min.js"></script>
                 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

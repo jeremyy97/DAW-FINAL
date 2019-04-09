@@ -15,14 +15,14 @@ class Peliculas extends Component{
         this.setState({
           contenido: <NuevaPelicula></NuevaPelicula>
         })
-      }
+    }
 
     render(){
         return(
             <div class="container">
                 <form class="card">
-                <fieldset>
-                    <legend>Lista de Películas</legend>
+                    <fieldset>
+                        <legend>Lista de Películas</legend>
                         <table id="idTable" class="table">
                             <thead class="thead-dark">
                                 <tr>
