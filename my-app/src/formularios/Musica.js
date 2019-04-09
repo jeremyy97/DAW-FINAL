@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
+import NuevaMusica from './NuevaMusica';
 
 class Musica extends Component{
     constructor(){
         super();
-        this.state={          
+        this.state={    
+            contenido:(<div></div>)      
         }
+        this.mostrarNuevaMusica = this.mostrarNuevaMusica.bind(this);
+    }
+
+    mostrarNuevaMusica(){
+        this.setState({
+            contenido: <NuevaMusica></NuevaMusica>
+          })
     }
     render(){
         return(
@@ -43,10 +52,13 @@ class Musica extends Component{
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="nuevo"></label>
                                 <div class="col-md-4">
-                                    <button id="nuevo" name="nuevo" class="btn btn-primary">Nuevo</button>
+                                    <a id="nuevo" name="nuevo" class="btn btn-primary" onClick= {this.mostrarNuevaMusica}>Craer Nueva Musica</a>
                                 </div>
                             </div>
                     </fieldset>
+                    <div>
+                        {this.state.contenido}
+                    </div>
                 </form>
                 <script src="vendor/jquery/jquery.min.js"></script>
                 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
