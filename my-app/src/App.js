@@ -3,6 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 import CrearUsuario from './formularios/CrearUsuario';
+import CambiarContrasenna from './formularios/CambiarContrasenna';
+import Consecutivos from './formularios/Consecutivos';
+import Parametros from './formularios/Parametros';
+import Peliculas from './formularios/Peliculas';
+import Libros from './formularios/Libros';
+import Musica from './formularios/Musica';
 
 class App extends Component {
   constructor(){
@@ -10,18 +16,56 @@ class App extends Component {
     this.state = {
       contenido : (<div></div>)
     };
-    this.mostrarContenido = this.mostrarContenido.bind(this);
+    this.mostrarCrearUsuario = this.mostrarCrearUsuario.bind(this);
+    this.mostrarCambiarContrasenna = this.mostrarCambiarContrasenna.bind(this);
+    this.mostrarConsecutivos = this.mostrarConsecutivos.bind(this);
+    this.mostrarParametros = this.mostrarParametros.bind(this);
+    this.mostrarPeliculas = this.mostrarPeliculas.bind(this);
+    this.mostrarLibros = this.mostrarLibros.bind(this);
+    this.mostrarMusica = this.mostrarMusica.bind(this);
   }
 
-  mostrarContenido(e){
-    const {value,name} = e.target;
-    console.log(name,value)
+  mostrarCrearUsuario(){
     this.setState({
       contenido: <CrearUsuario></CrearUsuario>
-    })  
+    })
   }
 
-  
+  mostrarCambiarContrasenna(){
+    this.setState({
+      contenido: <CambiarContrasenna></CambiarContrasenna>
+    })
+  }
+
+  mostrarConsecutivos(){
+    this.setState({
+      contenido: <Consecutivos></Consecutivos>
+    })
+  }
+
+  mostrarParametros(){
+    this.setState({
+      contenido: <Parametros></Parametros>
+    })
+  }
+
+  mostrarPeliculas(){
+    this.setState({
+      contenido: <Peliculas></Peliculas>
+    })
+  }
+
+  mostrarLibros(){
+    this.setState({
+      contenido: <Libros></Libros>
+    })
+  }
+
+  mostrarMusica(){
+    this.setState({
+      contenido: <Musica></Musica>
+    })
+  }
 
   render() {
     return (
@@ -58,7 +102,7 @@ class App extends Component {
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                 
-                  <a class="collapse-item" onClick={this.mostrarContenido}>Crear Usuarios</a>
+                  <a class="collapse-item" onClick={this.mostrarCrearUsuario}>Crear Usuarios</a>
                   <a class="collapse-item" href="cards.html">Asignar Roles</a>
                 </div>
               </div>
@@ -67,7 +111,7 @@ class App extends Component {
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Cambiar Contraseña</span>
+                <span onClick={this.mostrarCambiarContrasenna}>Cambiar Contraseña</span>
               </a>
               
             </li>
@@ -86,8 +130,8 @@ class App extends Component {
               <div id="collapseGeneral" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
               
-                  <a class="collapse-item" href="login.html">Consecutivos</a>
-                  <a class="collapse-item" href="register.html">Parámetros</a>
+                  <a class="collapse-item" onClick={this.mostrarConsecutivos}>Consecutivos</a>
+                  <a class="collapse-item" onClick={this.mostrarParametros}>Parámetros</a>
                 
                   <div class="collapse-divider"></div>
               
@@ -104,9 +148,9 @@ class App extends Component {
               <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Lista Artículos:</h6>
-                  <a class="collapse-item" href="login.html">Películas</a>
-                  <a class="collapse-item" href="register.html">Libros</a>
-                  <a class="collapse-item" href="forgot-password.html">Música</a>
+                  <a class="collapse-item" onClick={this.mostrarPeliculas}>Películas</a>
+                  <a class="collapse-item" onClick={this.mostrarLibros}>Libros</a>
+                  <a class="collapse-item" onClick={this.mostrarMusica}>Música</a>
                   <div class="collapse-divider"></div>
               
                 </div>

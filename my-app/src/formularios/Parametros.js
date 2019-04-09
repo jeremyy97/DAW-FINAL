@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class CrearUsuario extends Component{
+class Parametros extends Component{
     constructor(){
         super();
         this.state={
@@ -41,75 +41,76 @@ class CrearUsuario extends Component{
             <div class="container">
                 <form class="card">
                     <fieldset>
-                        <legend>Usuarios</legend>
-                        <label class="col-md-4 control-label" for="usuario">Crear nueva cuenta </label>  
+                        <legend>General</legend>
+                        <label class="col-md-4 control-label" for="usuario">Parametros</label>  
                         <br></br>
                         <div>
                         <table align="center" >
                             <tr>
                             <td align="left">
-                                <label class="" for="usuario">Usuario: </label> 
+                                <label class="" for="rutaPrePdf">Ruta almacenamiento pre visualización libros PDF:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="usuario" name="usuario" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="rutaPrePdf" name="rutaPrePdf" type="text" placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left"> 
-                                <label class="" for="contrasenna">Contraseña: </label>  
+                                <label class="" for="rutaPDF">Ruta almacenamiento libros PDF:</label>   
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="contrasenna" name="contrasenna" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="rutaPDF" name="rutaPDF" type="text" placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="confirmarContrasenna">Confirmar Contraseña: </label>  
+                                <label class="" for="rutaPrePel">Ruta almacenamiento pre visualización películas:</label>   
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="confirmarContrasenna" name="confirmarContrasenna" type="text" placeholder=" " class="form-control" required=""/>
+                                <input id="rutaPrePel" name="rutaPrePel" type="text" placeholder="" class="form-control input-md"></input>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="email">Email:</label>      
+                                <label class="" for="rutaPel">Ruta almacenamiento películas:</label>        
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="email" name="email" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="rutaPel" name="rutaPel" type="text" placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="preguntaSeguridad">Pregunta de Seguridad: </label>  
+                                <label class="" for="rutaPreMus">Ruta almacenamieto pre visualización Música:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="preguntaSeguridad" name="preguntaSeguridad" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="rutaPreMus" name="rutaPreMus" type="text" placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
-                            <td>
-                                <label class="" for="respuestaSeguridad">Respuesta de Seguridad: </label>
+                            <td align="left">
+                                <label class="" for="rutaMus">Ruta almacenamiento películas:</label> 
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="respuestaSeguridad" name="respuestaSeguridad" type="text" placeholder="" class="form-control" required=""/>  
+                                <input id="rutaMus" name="rutaMus" type="text" placeholder="" class="form-control input-md"></input>  
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="crearUsuario" name="crearUsuario" class="btn btn-primary">Crear Usuario</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>
                             </tr>
@@ -128,4 +129,4 @@ class CrearUsuario extends Component{
     }
 }
 
-export default CrearUsuario;
+export default Parametros;

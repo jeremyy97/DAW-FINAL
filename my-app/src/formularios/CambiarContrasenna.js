@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class CrearUsuario extends Component{
+class CambiarContrasenna extends Component{
     constructor(){
         super();
         this.state={
@@ -41,28 +41,28 @@ class CrearUsuario extends Component{
             <div class="container">
                 <form class="card">
                     <fieldset>
-                        <legend>Usuarios</legend>
-                        <label class="col-md-4 control-label" for="usuario">Crear nueva cuenta </label>  
+                        <legend>Seguridad</legend>
+                        <label class="col-md-4 control-label" for="usuario">Cambiar Contraseña </label>  
                         <br></br>
                         <div>
                         <table align="center" >
                             <tr>
                             <td align="left">
-                                <label class="" for="usuario">Usuario: </label> 
+                            <label class="" for="contrasenna">Contraseña actual:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="usuario" name="usuario" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="contrasenna" name="contrasenna" type="text" placeholder="" class="form-control input-md" required=""/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left"> 
-                                <label class="" for="contrasenna">Contraseña: </label>  
+                                <label for="nuevaContrasenna">Nueva Contraseña:</label>  
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="contrasenna" name="contrasenna" type="text" placeholder="" class="form-control" required=""/>
+                                <input id="nuevaContrasenna" name="nuevaContrasenna" type="text" placeholder="" class="form-control input-md" required=""/>
                                 </div>
                             </td>
                             </tr>
@@ -77,39 +77,10 @@ class CrearUsuario extends Component{
                             </td>
                             </tr>
                             <tr>
-                            <td align="left">
-                                <label class="" for="email">Email:</label>      
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                <input id="email" name="email" type="text" placeholder="" class="form-control" required=""/>
-                                </div>      
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="preguntaSeguridad">Pregunta de Seguridad: </label>  
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                <input id="preguntaSeguridad" name="preguntaSeguridad" type="text" placeholder="" class="form-control" required=""/>
-                                </div>      
-                            </td>
-                            </tr>
-                            <tr>
-                            <td>
-                                <label class="" for="respuestaSeguridad">Respuesta de Seguridad: </label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input id="respuestaSeguridad" name="respuestaSeguridad" type="text" placeholder="" class="form-control" required=""/>  
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="crearUsuario" name="crearUsuario" class="btn btn-primary">Crear Usuario</button>
+                                <button id="cambiarContrasenna" name="cambiarContrasenna" class="btn btn-primary">CambiarContrasenna</button>
+                                <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>
                             </tr>
@@ -128,4 +99,4 @@ class CrearUsuario extends Component{
     }
 }
 
-export default CrearUsuario;
+export default CambiarContrasenna;
