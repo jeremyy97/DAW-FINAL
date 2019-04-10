@@ -9,6 +9,7 @@ import Parametros from './formularios/Parametros';
 import Peliculas from './formularios/Peliculas';
 import Libros from './formularios/Libros';
 import Musica from './formularios/Musica';
+import VerUsuarios from './formularios/VerUsuarios';
 
 class App extends Component {
   constructor(){
@@ -23,6 +24,7 @@ class App extends Component {
     this.mostrarPeliculas = this.mostrarPeliculas.bind(this);
     this.mostrarLibros = this.mostrarLibros.bind(this);
     this.mostrarMusica = this.mostrarMusica.bind(this);
+    this.mostrarVerUsuarios = this.mostrarVerUsuarios.bind(this);
   }
 
   mostrarCrearUsuario(){
@@ -67,6 +69,12 @@ class App extends Component {
     })
   }
 
+  mostrarVerUsuarios(){
+    this.setState({
+      contenido: <VerUsuarios></VerUsuarios>
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -103,7 +111,7 @@ class App extends Component {
                 <div class="bg-white py-2 collapse-inner rounded">
                 
                   <a class="collapse-item" onClick={this.mostrarCrearUsuario}>Crear Usuarios</a>
-                  <a class="collapse-item" href="cards.html">Asignar Roles</a>
+                  <a class="collapse-item" onClick={this.mostrarVerUsuarios}>Asignar Roles</a>
                 </div>
               </div>
             </li>

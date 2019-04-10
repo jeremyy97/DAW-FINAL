@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class NuevaMusica extends Component{
+class EditarLibro extends Component{
     constructor(){
         super();
         this.state={
@@ -42,7 +42,7 @@ class NuevaMusica extends Component{
                 <form class="form-horizontal">
                     <fieldset>
                         <hr class="sidebar-divider"/>
-                        <legend>Crear nueva Musica</legend>
+                        <legend>Editar Libro</legend>
                         <label class="col-md-4 control-label" for="usuario"></label>  
                         <br></br>
                         <div>
@@ -69,33 +69,20 @@ class NuevaMusica extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="genero">Genero:</label>  
+                                <label class="" for="categoria">Categoría:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="genero" name="genero" class="form-control">
-                                    <option value="1">Rock</option>
-                                    <option value="2">Grunge</option>
+                                <select id="categoria" name="categoria" class="form-control">
+                                    <option value="1">Terror</option>
+                                    <option value="2">Fantasia</option>
                                     </select>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="tipo">Tipo Interpretación:</label>     
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                <select id="tipo" name="tipo" class="form-control">
-                                <option value="1">No tengo</option>
-                                <option value="2">idea</option>
-                                </select>   
-                                </div>      
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="idioma">Idioma:</label>    
+                                <label class="" for="idioma">Idioma:</label>       
                             </td>
                             <td>
                                 <div class="form-group">
@@ -105,53 +92,31 @@ class NuevaMusica extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="col-md-4 control-label" for="pais">País:</label>
+                                <label class="" for="actores">Actores</label>    
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                <textarea class="form-control" id="actores" name="actores"></textarea>
+                                </div>      
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="" for="editorial">Editorial:</label>
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <select id="pais" name="pais" class="form-control">
-                                    <option value="">Costa Rica</option>
-                                </select> 
+                                <input id="editorial" name="editorial" type="text" placeholder="" class="form-control input-md"></input> 
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="disquera">Disquera:</label>
+                                <label class="" for="publicacion">Año de Publicación:</label>
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="disquera" name="disquera" type="text" placeholder="" class="form-control input-md"></input> 
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="l" for="textinput">Disco:</label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></input>
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="anno">Año:</label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input id="anno" name="anno" type="text" placeholder="" class="form-control input-md"></input>  
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="descargaActual">Archivo descarga actual:</label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input id="descargaActual" name="descargaActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input id="publicacion" name="publicacion" type="text" placeholder="" class="form-control input-md"></input> 
                                 </div>
                             </td>
                             </tr>
@@ -162,16 +127,6 @@ class NuevaMusica extends Component{
                             <td> 
                                 <div class="form-group">
                                 <input id="descarga" name="descarga" class="input-file" type="file"></input>  
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="previsualizacionActual">Archivo pre visualización actual</label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input id="previsualizacionActual" name="previsualizacionActual" type="text" placeholder="" class="form-control input-md"></input>  
                                 </div>
                             </td>
                             </tr>
@@ -208,4 +163,4 @@ class NuevaMusica extends Component{
     }
 }
 
-export default NuevaMusica;
+export default EditarLibro;
