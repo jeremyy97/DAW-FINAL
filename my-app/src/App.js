@@ -10,6 +10,8 @@ import Peliculas from './formularios/Peliculas';
 import Libros from './formularios/Libros';
 import Musica from './formularios/Musica';
 import VerUsuarios from './formularios/VerUsuarios';
+import Bitacora from './formularios/Bitacora';
+import Transacciones from './formularios/Transacciones';
 
 class App extends Component {
   constructor(){
@@ -25,6 +27,8 @@ class App extends Component {
     this.mostrarLibros = this.mostrarLibros.bind(this);
     this.mostrarMusica = this.mostrarMusica.bind(this);
     this.mostrarVerUsuarios = this.mostrarVerUsuarios.bind(this);
+    this.mostrarBitacora = this.mostrarBitacora.bind(this);
+    this.mostrarTransacciones = this.mostrarTransacciones.bind(this);
   }
 
   mostrarCrearUsuario(){
@@ -72,6 +76,18 @@ class App extends Component {
   mostrarVerUsuarios(){
     this.setState({
       contenido: <VerUsuarios></VerUsuarios>
+    })
+  }
+
+  mostrarBitacora(){
+    this.setState({
+      contenido: <Bitacora></Bitacora>
+    })
+  }
+
+  mostrarTransacciones(){
+    this.setState({
+      contenido: <Transacciones></Transacciones>
     })
   }
 
@@ -181,10 +197,10 @@ class App extends Component {
               <div id="collapseConsulta" class="collapse " aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                 
-                  <a class="collapse-item" href="login.html">Bitácora</a>
-                  <a class="collapse-item" href="register.html">Transacciones</a>
+                  <a class="collapse-item" onClick={this.mostrarBitacora}>Bitácora</a>
+                  <a class="collapse-item" onClick={this.mostrarTransacciones}>Transacciones</a>
                   <a class="collapse-item" href="forgot-password.html">Descargas</a>
-              <a class="collapse-item" href="forgot-password.html">Errores</a>
+                  <a class="collapse-item" href="forgot-password.html">Errores</a>
                   <div class="collapse-divider"></div>
               
                 </div>
