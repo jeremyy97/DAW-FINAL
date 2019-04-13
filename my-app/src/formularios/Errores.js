@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
-import ListaTransacciones from './ListaTransacciones';
+import ListaErrores from './ListaErrores';
 
-class Transacciones extends Component{
+class Errores extends Component{
     constructor(){
         super();
         this.state={
             usuario:'',
             contrasenna:'',
-            contrasennaConfirmar:'',
+            contrasennaConfirmar    :'',
             email:'',
             preguntaSeguridad: '',
             respuestaSeguridad: '',
@@ -16,12 +16,12 @@ class Transacciones extends Component{
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
-        this.mostrarListaTransacciones = this.mostrarListaTransacciones.bind(this)
+        this.mostrarListaErrores = this.mostrarListaErrores.bind(this)
     }
 
-    mostrarListaTransacciones(){
+    mostrarListaErrores(){
         this.setState({
-          contenido: <ListaTransacciones></ListaTransacciones>
+          contenido: <ListaErrores></ListaErrores>
         })
     }
 
@@ -52,16 +52,11 @@ class Transacciones extends Component{
                 <form class="form-horizontal">
                     <fieldset>
                         <hr class="sidebar-divider"/>
-                        <legend>Transacciones</legend>
+                        <legend>Errores</legend>
                         <label class="col-md-4 control-label" for="usuario"></label>  
                         <br></br>
                         <div>
                         <table align="center" >
-                            <tr>
-                                <td>
-                                <label class="" for="usuario">Consultar por</label>
-                                </td>
-                            </tr>
                             <tr>
                             <td align="left">
                                 <label class="" for="fecha">Fecha:</label> 
@@ -74,35 +69,15 @@ class Transacciones extends Component{
                                     <option value="3">Mensual</option>
                                     <option value="4">Trimestral</option>
                                     <option value="5">Semestral</option>
+                                    <option value="5">Todos</option>
                                     </select>
                                 </div>   
-                            </td>
-                            <td>
-                                <div  class="form-group">
-                                <a id="consultarPorFecha" name="consultarPorFecha" class="btn btn-primary" onClick={this.mostrarListaTransacciones}>Consultar</a>
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="metodo">Metodo de pago:</label> 
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                <select id="metodo" name="metodo" class="form-control">
-                                    <option value="1">Tarjeta credito/debito</option>
-                                    <option value="2">Easy Pay</option>
-                                    <option value="2">Ambas</option>
-                                    </select>
-                                </div>   
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                <a id="consultar" name="consultar" class="btn btn-primary" onClick={this.mostrarListaTransacciones}>Consultar</a>
-                                </div>
                             </td>
                             </tr>
                         </table>
+                            <div class="form-group">
+                            <a id="consultar" name="consultar" class="btn btn-primary" onClick={this.mostrarListaErrores}>Consultar</a>
+                            </div>
                         </div>
                     </fieldset>
                     <div>
@@ -120,4 +95,4 @@ class Transacciones extends Component{
     }
 }
 
-export default Transacciones;
+export default Errores;

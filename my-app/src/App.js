@@ -12,6 +12,8 @@ import Musica from './formularios/Musica';
 import VerUsuarios from './formularios/VerUsuarios';
 import Bitacora from './formularios/Bitacora';
 import Transacciones from './formularios/Transacciones';
+import Descargas from './formularios/Descargas';
+import Errores from './formularios/Errores';
 
 class App extends Component {
   constructor(){
@@ -29,6 +31,8 @@ class App extends Component {
     this.mostrarVerUsuarios = this.mostrarVerUsuarios.bind(this);
     this.mostrarBitacora = this.mostrarBitacora.bind(this);
     this.mostrarTransacciones = this.mostrarTransacciones.bind(this);
+    this.mostrarDescargas = this.mostrarDescargas.bind(this);
+    this.mostrarErrores = this.mostrarErrores.bind(this);
   }
 
   mostrarCrearUsuario(){
@@ -88,6 +92,18 @@ class App extends Component {
   mostrarTransacciones(){
     this.setState({
       contenido: <Transacciones></Transacciones>
+    })
+  }
+
+  mostrarDescargas(){
+    this.setState({
+      contenido: <Descargas></Descargas>
+    })
+  }
+
+  mostrarErrores(){
+    this.setState({
+      contenido: <Errores></Errores>
     })
   }
 
@@ -199,8 +215,8 @@ class App extends Component {
                 
                   <a class="collapse-item" onClick={this.mostrarBitacora}>Bitácora</a>
                   <a class="collapse-item" onClick={this.mostrarTransacciones}>Transacciones</a>
-                  <a class="collapse-item" href="forgot-password.html">Descargas</a>
-                  <a class="collapse-item" href="forgot-password.html">Errores</a>
+                  <a class="collapse-item" onClick={this.mostrarDescargas}>Descargas</a>
+                  <a class="collapse-item" onClick={this.mostrarErrores}>Errores</a>
                   <div class="collapse-divider"></div>
               
                 </div>
