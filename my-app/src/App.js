@@ -272,7 +272,9 @@ class App extends Component {
           {/*<!--PEGAR AQUI CODIGO DE FORMS-->*/}
           
           <div>
+           
             {this.state.contenido}
+
           </div>
  
           

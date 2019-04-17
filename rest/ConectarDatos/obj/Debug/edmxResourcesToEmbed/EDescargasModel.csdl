@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EDescargasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bitacora">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="producto" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_BITACORA_USER" FromRole="bitacora" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="categoria_libro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="libroes" Relationship="Self.FK_CATEGORIA_LIBRO" FromRole="categoria_libro" ToRole="libro" />
+  </EntityType>
+  <EntityType Name="compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <Property Name="producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Single" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_COMPRA_USUARIO" FromRole="compra" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="consecutivo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="consecutivo1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prefijo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="rango_inicial" Type="Int32" Nullable="false" />
+    <Property Name="rango_final" Type="Int32" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_CONSECUTIVO_USUARIO" FromRole="consecutivo" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="error">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_ERROR_USUARIO" FromRole="error" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="genero_musica">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="musicas" Relationship="Self.FK_GENERO_MUSICA" FromRole="genero_musica" ToRole="musica" />
+  </EntityType>
+  <EntityType Name="genero_pelicula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="peliculas" Relationship="Self.FK_GENERO_PELICULA" FromRole="genero_pelicula" ToRole="pelicula" />
+  </EntityType>
+  <EntityType Name="libro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoria" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="Int32" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="idioma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="actores" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_descarga" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_previsualizacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="categoria_libro" Relationship="Self.FK_CATEGORIA_LIBRO" FromRole="libro" ToRole="categoria_libro" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_LIBRO_USUARIO" FromRole="libro" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="musica">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="Int32" />
+    <Property Name="genero" Type="Int32" Nullable="false" />
+    <Property Name="duration" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="genero_musica" Relationship="Self.FK_GENERO_MUSICA" FromRole="musica" ToRole="genero_musica" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_MUSICA_USUARIO" FromRole="musica" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="parametro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="previsualizacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="almacenamiento" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_PARAMETRO_USUARIO" FromRole="parametro" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="pelicula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="genero" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="idioma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="Int32" />
+    <Property Name="actores" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_descarga" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_previsualizacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="genero_pelicula" Relationship="Self.FK_GENERO_PELICULA" FromRole="pelicula" ToRole="genero_pelicula" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_PELICULA_USUARIO" FromRole="pelicula" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="rol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_ROL_USER" FromRole="rol" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="primer_apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="segundo_apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pregunta_seguridad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rol" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BITACORA_USER">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="bitacora" Type="Self.bitacora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bitacora">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATEGORIA_LIBRO">
+    <End Role="categoria_libro" Type="Self.categoria_libro" Multiplicity="1" />
+    <End Role="libro" Type="Self.libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria_libro">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="libro">
+        <PropertyRef Name="categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPRA_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="compra" Type="Self.compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compra">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONSECUTIVO_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consecutivo">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ERROR_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="error" Type="Self.error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="error">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GENERO_MUSICA">
+    <End Role="genero_musica" Type="Self.genero_musica" Multiplicity="1" />
+    <End Role="musica" Type="Self.musica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero_musica">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="musica">
+        <PropertyRef Name="genero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GENERO_PELICULA">
+    <End Role="genero_pelicula" Type="Self.genero_pelicula" Multiplicity="1" />
+    <End Role="pelicula" Type="Self.pelicula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero_pelicula">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pelicula">
+        <PropertyRef Name="genero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIBRO_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="libro" Type="Self.libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="libro">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MUSICA_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="musica" Type="Self.musica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="musica">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PARAMETRO_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="parametro" Type="Self.parametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="parametro">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PELICULA_USUARIO">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="pelicula" Type="Self.pelicula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pelicula">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_USER">
+    <End Role="rol" Type="Self.rol" Multiplicity="1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rol">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EDescargasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bitacoras" EntityType="Self.bitacora" />
+    <EntitySet Name="categoria_libro" EntityType="Self.categoria_libro" />
+    <EntitySet Name="compras" EntityType="Self.compra" />
+    <EntitySet Name="consecutivoes" EntityType="Self.consecutivo" />
+    <EntitySet Name="errors" EntityType="Self.error" />
+    <EntitySet Name="genero_musica" EntityType="Self.genero_musica" />
+    <EntitySet Name="genero_pelicula" EntityType="Self.genero_pelicula" />
+    <EntitySet Name="libroes" EntityType="Self.libro" />
+    <EntitySet Name="musicas" EntityType="Self.musica" />
+    <EntitySet Name="parametroes" EntityType="Self.parametro" />
+    <EntitySet Name="peliculas" EntityType="Self.pelicula" />
+    <EntitySet Name="rols" EntityType="Self.rol" />
+    <EntitySet Name="usuarios" EntityType="Self.usuario" />
+    <AssociationSet Name="FK_BITACORA_USER" Association="Self.FK_BITACORA_USER">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="bitacora" EntitySet="bitacoras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATEGORIA_LIBRO" Association="Self.FK_CATEGORIA_LIBRO">
+      <End Role="categoria_libro" EntitySet="categoria_libro" />
+      <End Role="libro" EntitySet="libroes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPRA_USUARIO" Association="Self.FK_COMPRA_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="compra" EntitySet="compras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONSECUTIVO_USUARIO" Association="Self.FK_CONSECUTIVO_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="consecutivo" EntitySet="consecutivoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ERROR_USUARIO" Association="Self.FK_ERROR_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="error" EntitySet="errors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GENERO_MUSICA" Association="Self.FK_GENERO_MUSICA">
+      <End Role="genero_musica" EntitySet="genero_musica" />
+      <End Role="musica" EntitySet="musicas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GENERO_PELICULA" Association="Self.FK_GENERO_PELICULA">
+      <End Role="genero_pelicula" EntitySet="genero_pelicula" />
+      <End Role="pelicula" EntitySet="peliculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIBRO_USUARIO" Association="Self.FK_LIBRO_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="libro" EntitySet="libroes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MUSICA_USUARIO" Association="Self.FK_MUSICA_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="musica" EntitySet="musicas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PARAMETRO_USUARIO" Association="Self.FK_PARAMETRO_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="parametro" EntitySet="parametroes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PELICULA_USUARIO" Association="Self.FK_PELICULA_USUARIO">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="pelicula" EntitySet="peliculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_USER" Association="Self.FK_ROL_USER">
+      <End Role="rol" EntitySet="rols" />
+      <End Role="usuario" EntitySet="usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

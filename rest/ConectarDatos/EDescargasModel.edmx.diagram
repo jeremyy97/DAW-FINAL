@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c82b57da72da46839ffefd5c2297e7a6" Name="Diagram1">
+        <EntityTypeShape EntityType="EDescargasModel.bitacora" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.categoria_libro" Width="1.5" PointX="6" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.compra" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.consecutivo" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.error" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.genero_musica" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.genero_pelicula" Width="1.5" PointX="6" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.libro" Width="1.5" PointX="8.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.musica" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.parametro" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.pelicula" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.rol" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDescargasModel.usuario" Width="2" PointX="2.5" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="EDescargasModel.FK_BITACORA_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_CATEGORIA_LIBRO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_COMPRA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_CONSECUTIVO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_ERROR_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_GENERO_MUSICA" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_GENERO_PELICULA" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_LIBRO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_MUSICA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_PARAMETRO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_PELICULA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="EDescargasModel.FK_ROL_USER" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

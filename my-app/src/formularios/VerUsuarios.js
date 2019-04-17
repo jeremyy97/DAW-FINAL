@@ -1,6 +1,46 @@
 import React, {Component} from 'react';
+import {getUsers} from '../utils/api.js'
+
 
 class VerUsuarios extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+   
+
+            users: [],
+            loading: true,
+            usuario:{}
+        }
+    }
+
+    
+    componentDidMount() {
+        getUsers()
+          .then((res) => {
+            this.setState({
+              users: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+
+      cargarOpciones = () => {
+        const { users } = this.state;
+    
+        return users.map(user => {
+          const { id, nombre, primer_apellido, segundo_apellido } = user;
+    
+          return (
+            <option key={id}>{nombre} {primer_apellido} {segundo_apellido}</option>
+
+          );
+        });
+      }
+
+
+
     render(){
         return(
             <div class="container">
@@ -15,8 +55,8 @@ class VerUsuarios extends Component{
                                 <label class="" for="usuarios"></label>
                                 <div class="container">
                                 <select id="usuarios" name="usuarios" class="form-control" multiple="multiple" style={{height: 250}}>
-                                    <option value="1">user1</option>
-                                    <option value="2">user2</option>
+                                    {this.state.loading ? 'loading...' : this.cargarOpciones()}
+
                                 </select>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ import App from './App.js'
 
 
 
+
 class Login extends React.Component{
     constructor(props){
         super(props);
@@ -12,8 +13,13 @@ class Login extends React.Component{
             password:'',
             users: [],
             loading: true,
+            usuario:{}
         }
+        this.verificar = this.verificar.bind(this);
+    
     }
+
+    //TRAER USUARIOS POR GET
 
     componentDidMount() {
         getUsers()
@@ -39,19 +45,23 @@ class Login extends React.Component{
 
       verificar = () => {
     
-       
+     
         let resultado=false;
-        
         this.state.users.forEach((e,i) => {
-       
             if (e.usuario1 == this.state.username && e.contrasenna == this.state.password){
                 resultado=true;
+                this.state.usuario=e;
             }
         })
 
-        resultado ? console.log('Ingreso correcto') : console.log('Ingreso incorrecto');
-
-     
+        if(resultado){
+            alert('Acceso Correcto');
+           
+            window.location="/menu";
+            
+        }else{
+            alert('Credenciales incorrectos');
+        }
 
       
       }
@@ -116,7 +126,7 @@ class Login extends React.Component{
                                                     </div>
 
                                                     <button  class="btn btn-primary btn-user btn-block" >
-                                                        Login 
+                                                       Login
                     </button>
                                                     <hr />
 
