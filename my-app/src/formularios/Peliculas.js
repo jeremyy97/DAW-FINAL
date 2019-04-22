@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {getPeliculas} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
 
 import NuevaPelicula from './NuevaPelicula';
+import EditarPelicula from './EditarPelicula';
 
 class Peliculas extends Component{
     constructor(){
@@ -11,6 +12,8 @@ class Peliculas extends Component{
             contenido : (<div></div>)
         }
         this.mostrarNuevaPelicula = this.mostrarNuevaPelicula.bind(this);
+        this.mostrarEditarPelicula = this.mostrarEditarPelicula.bind(this);
+        
     }
 
     componentDidMount() {
@@ -23,6 +26,27 @@ class Peliculas extends Component{
           })
           .catch((err) => console.log(err));
       }
+
+      
+    mostrarEditarPelicula(e){
+        {this.state.peliculas.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EditarPelicula 
+                    id= {item.id}
+                    nombre= {item.nombre}
+                    genero= {item.genero}
+                    year= {item.year}
+                    idioma= {item.idioma}
+                    usuario= {item.usuario}
+                    actores= {item.actores}
+                    url_descarga= {item.url_descarga}
+                    url_previsualizacion= {item.url_previsualizacion}
+                    ></EditarPelicula>
+                })
+            }
+         })}
+    }
 
     mostrarNuevaPelicula(){
         this.setState({
@@ -48,7 +72,7 @@ class Peliculas extends Component{
                                     <tr>
                                         <td key={i}>{item.id}</td>
                                         <td key={i}>{item.nombre}</td>
-                                        <td><a href="#">Editar</a></td>
+                                        <td><a id={item.id} onClick={this.mostrarEditarPelicula} href="#">Editar</a></td>
                                         <td><a href="#">Eliminar</a></td>
                                     </tr>
                                 ) })}

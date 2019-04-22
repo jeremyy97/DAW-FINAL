@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 
 class EditarPelicula extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            id: this.props.id,
+            nombre: this.props.nombre,
+            genero: this.props.genero,
+            year: this.props.year,
+            idioma: this.props.idioma,
+            usuario: this.props.usuario,
+            actores: this.props.actores,
+            url_descarga: this.props.url_descarga,
+            url_previsualizacion: this.props.url_previsualizacion
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
@@ -53,7 +56,7 @@ class EditarPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="codigo" name="codigo" type="text" placeholder="" class="form-control input-md"/>
+                                <input id="codigo" name="codigo" type="text" value={this.state.id} placeholder="" class="form-control input-md" disabled/>
                                 </div>
                             </td>
                             </tr>
@@ -63,7 +66,7 @@ class EditarPelicula extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="nombre" name="nombre" type="text" onChange={this.controlarCambioInput} value={this.state.nombre} placeholder="" class="form-control input-md"></input>
                                 </div>
                             </td>
                             </tr>
@@ -73,7 +76,7 @@ class EditarPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="genero" name="genero" class="form-control">
+                                <select id="genero" name="genero" onChange={this.controlarCambioInput}  value={this.state.genero} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Comedia</option>
                                     </select>
@@ -82,11 +85,11 @@ class EditarPelicula extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="anno">Año:</label>       
+                                <label class="" for="year">Año:</label>       
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="anno" name="anno" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="year" name="year" type="text" onChange={this.controlarCambioInput} value={this.state.year} placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
@@ -96,7 +99,7 @@ class EditarPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="idioma" name="idioma" type="text" onChange={this.controlarCambioInput} value={this.state.idioma} placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
@@ -106,7 +109,7 @@ class EditarPelicula extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <textarea class="form-control" id="actores" name="actores"></textarea>  
+                                <textarea class="form-control" id="actores" onChange={this.controlarCambioInput} value={this.state.actores}  name="actores"></textarea>  
                                 </div>
                             </td>
                             </tr>
