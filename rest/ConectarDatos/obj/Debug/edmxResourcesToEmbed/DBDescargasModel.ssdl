@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDescargasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bitacora">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="producto" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="categoria_libro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="usuario" Type="int" Nullable="false" />
+    <Property Name="producto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="precio" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="consecutivo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="consecutivo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="prefijo" Type="varchar" MaxLength="30" />
+    <Property Name="rango_inicial" Type="int" Nullable="false" />
+    <Property Name="rango_final" Type="int" />
+    <Property Name="usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="error">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genero_musica">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genero_pelicula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="libro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="categoria" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="int" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="idioma" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="actores" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="editorial" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="url_descarga" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="url_previsualizacion" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="musica">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="usuario" Type="int" />
+    <Property Name="genero" Type="int" />
+    <Property Name="tipo_interpretacion" Type="varchar" MaxLength="30" />
+    <Property Name="idioma" Type="varchar" MaxLength="50" />
+    <Property Name="pais" Type="varchar" MaxLength="50" />
+    <Property Name="disquera" Type="varchar" MaxLength="50" />
+    <Property Name="disco" Type="varchar" MaxLength="50" />
+    <Property Name="year" Type="int" />
+    <Property Name="url_descarga" Type="varchar" MaxLength="50" />
+    <Property Name="url_previsualizacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="parametro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="previsualizacion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="almacenamiento" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="tipo" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pelicula">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="genero" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="idioma" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="usuario" Type="int" />
+    <Property Name="actores" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="url_descarga" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="url_previsualizacion" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="segundo_apellido" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="pregunta_seguridad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="rol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DBDescargasModelStoreContainer">
+    <EntitySet Name="bitacora" EntityType="Self.bitacora" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categoria_libro" EntityType="Self.categoria_libro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="compra" EntityType="Self.compra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consecutivo" EntityType="Self.consecutivo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="error" EntityType="Self.error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="genero_musica" EntityType="Self.genero_musica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="genero_pelicula" EntityType="Self.genero_pelicula" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="libro" EntityType="Self.libro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="musica" EntityType="Self.musica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="parametro" EntityType="Self.parametro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pelicula" EntityType="Self.pelicula" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

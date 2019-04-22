@@ -15,15 +15,15 @@ namespace REST.Controllers4
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuariosController : ApiController
     {
-        private EDescargasEntities dbContext = new EDescargasEntities();
+        private DBDescargasEntities dbContext = new DBDescargasEntities();
 
         [HttpGet]
         //TODA LA LISTA
         public IEnumerable<usuario> Get()
         {
-            using(EDescargasEntities edescargarentities = new EDescargasEntities())
+            using(DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return edescargarentities.usuarios.ToList();
+                return dbdescargarentities.usuarios.ToList();
             }
         }
 
@@ -32,9 +32,9 @@ namespace REST.Controllers4
 
         public usuario Get(int id)
         {
-            using (EDescargasEntities edescargarentities = new EDescargasEntities())
+            using (DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return edescargarentities.usuarios.FirstOrDefault(e => e.id == id);
+                return dbdescargarentities.usuarios.FirstOrDefault(e => e.id == id);
             }
         }
 
@@ -43,9 +43,9 @@ namespace REST.Controllers4
 
         public usuario Login(string username, string password)
         {
-            using (EDescargasEntities edescargarentities = new EDescargasEntities())
+            using (DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return edescargarentities.usuarios.FirstOrDefault(e => e.usuario1 == username && e.contrasenna == password);
+                return dbdescargarentities.usuarios.FirstOrDefault(e => e.usuario1 == username && e.contrasenna == password);
             }
         }
 

@@ -1,13 +1,54 @@
 import React, {Component} from 'react';
+import {getMusica} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
+
 import NuevaMusica from './NuevaMusica';
+import EditarMusica from './EditarMusica';
 
 class Musica extends Component{
     constructor(){
         super();
         this.state={    
+            canciones : [],
             contenido:(<div></div>)      
         }
         this.mostrarNuevaMusica = this.mostrarNuevaMusica.bind(this);
+        this.mostrarEditarMusica = this.mostrarEditarMusica.bind(this);
+        
+    }
+
+    componentDidMount() {
+        getMusica()
+          .then((res) => {
+            this.setState({
+              canciones: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+
+      
+    mostrarEditarMusica(e){
+        {this.state.canciones.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EditarMusica 
+                    id={item.id}
+                    nombre={item.nombre}
+                    usuario = {item.usuario}
+                    genero = {item.genero}
+                    tipo_interpretacion = {item.tipo_interpretacion}
+                    idioma = {item.idioma}
+                    pais = {item.pais}
+                    disquera = {item.disquera}
+                    disco = {item.disco}
+                    year = {item.year}
+                    url_descarga = {item.url_descarga}
+                    url_previsualizacion = {item.url_previsualizacion}
+                    ></EditarMusica>
+                })
+            }
+         })}
     }
 
     mostrarNuevaMusica(){
@@ -29,24 +70,14 @@ class Musica extends Component{
                                         <th></th>
                                         <th></th>
                                     </tr>
+                                    {this.state.canciones.map((item,i)=>{return(
                                     <tr>
-                                        <td>1</td>
-                                        <td>Come as you are</td>
-                                        <td>Editar</td>
-                                        <td>Eliminar</td>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.nombre}</td>
+                                        <td><a id={item.id} onClick={this.mostrarEditarMusica} href="#">Editar</a></td>
+                                        <td><a href="#">Eliminar</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Heaven Besides you</td>
-                                        <td>Editar</td>
-                                        <td>Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Nutshell</td>
-                                        <td>Editar</td>
-                                        <td>Eliminar</td>
-                                    </tr>
+                                    ) })}
                                 </thead>
                             </table>
                             <div class="form-group">

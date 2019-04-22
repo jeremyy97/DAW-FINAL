@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
 
 class EditarMusica extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            id: this.props.id,
+            nombre: this.props.nombre,
+            usuario: this.props.usuario,
+            genero: this.props.genero,
+            tipo_interpretacion: this.props.tipo_interpretacion,
+            idioma: this.props.idioma,
+            pais: this.props.pais,
+            disquera: this.props.disquera,
+            disco: this.props.disco,
+            year: this.props.year,
+            url_descarga: this.props.url_descarga,
+            url_previsualizacion: this.props.url_previsualizacion
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
@@ -47,13 +53,13 @@ class EditarMusica extends Component{
                         <br></br>
                         <div>
                         <table align="center" >
-                            <tr>
+                        <tr>
                             <td align="left">
                                 <label class="" for="codigo">Código:</label> 
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="codigo" name="codigo" type="text" placeholder="" class="form-control input-md"/>
+                                <input id="codigo" name="codigo" type="text" value={this.state.id} placeholder="" class="form-control input-md" disabled/>
                                 </div>
                             </td>
                             </tr>
@@ -63,60 +69,86 @@ class EditarMusica extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="nombre" name="nombre" type="text" onChange={this.controlarCambioInput} value={this.state.nombre} placeholder="" class="form-control input-md"></input>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="categoria">Categoría:</label>  
+                                <label class="" for="genero">Genero:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="categoria" name="categoria" class="form-control">
-                                    <option value="1">Terror</option>
-                                    <option value="2">Fantasia</option>
+                                <select id="genero" name="genero"  onChange={this.controlarCambioInput} value={this.state.genero} class="form-control">
+                                    <option value="1">Rock</option>
+                                    <option value="2">Grunge</option>
                                     </select>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="idioma">Idioma:</label>       
+                                <label class="" for="tipo">Tipo Interpretación:</label>     
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text" placeholder="" class="form-control input-md"></input>
+                                <select id="tipo" name="tipo" onChange={this.controlarCambioInput} value={this.state.tipo_interpretacion} class="form-control">
+                                <option value="1">Grupal</option>
+                                <option value="2">Solo</option>
+                                </select>   
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="actores">Actores</label>    
+                                <label class="" for="idioma">Idioma:</label>    
                             </td>
                             <td>
                                 <div class="form-group">
-                                <textarea class="form-control" id="actores" name="actores"></textarea>
+                                <input id="idioma" name="idioma" type="text" onChange={this.controlarCambioInput} value={this.state.idioma} placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="editorial">Editorial:</label>
+                                <label class=""  for="pais">País:</label>
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="editorial" name="editorial" type="text" placeholder="" class="form-control input-md"></input> 
+                                <select id="pais" name="pais"  onChange={this.controlarCambioInput} value={this.state.pais} class="form-control">
+                                    <option value="1">USA</option>
+                                    <option value="2">Costa Rica</option>
+                                </select> 
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="publicacion">Año de Publicación:</label>
+                                <label class="" for="disquera">Disquera:</label>
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="publicacion" name="publicacion" type="text" placeholder="" class="form-control input-md"></input> 
+                                <input id="disquera" name="disquera" type="text"   onChange={this.controlarCambioInput} value={this.state.disquera} placeholder="" class="form-control input-md"></input> 
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="l" for="disco">Disco:</label>
+                            </td>
+                            <td> 
+                                <div class="form-group">
+                                <input id="disco" name="disco" type="text"  onChange={this.controlarCambioInput}  value={this.state.disco} placeholder="" class="form-control input-md"></input>
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="" for="anno">Año:</label>
+                            </td>
+                            <td> 
+                                <div class="form-group">
+                                <input id="anno" name="anno" type="text"  onChange={this.controlarCambioInput} value={this.state.year} placeholder="" class="form-control input-md"></input>  
                                 </div>
                             </td>
                             </tr>
@@ -137,6 +169,14 @@ class EditarMusica extends Component{
                             <td> 
                                 <div class="form-group">
                                 <input id="previsualización" name="previsualización" class="input-file" type="file"></input>  
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>
                             </tr>

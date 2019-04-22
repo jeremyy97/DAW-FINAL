@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
-import {getUsers} from '../utils/api.js'
-
+import {getUsers} from '../utils/api.js';
+import ListaRoles from './ListaRoles.js';
 
 class VerUsuarios extends Component{
     constructor(props){
         super(props);
         this.state={
    
-
+            contenido : (<div>
+                <br></br><br></br><br></br><br></br>
+                <p>Click en alguno de los usuarios para mostrar su rol</p>
+            </div>),
             users: [],
             loading: true,
-            usuario:{}
+            usuario : 0,
+            rol : 0
         }
+        this.cargarRol = this.cargarRol.bind(this);
+        this.mostrarRol = this.mostrarRol.bind(this);
     }
 
     
@@ -33,13 +39,45 @@ class VerUsuarios extends Component{
           const { id, nombre, primer_apellido, segundo_apellido } = user;
     
           return (
-            <option key={id}>{nombre} {primer_apellido} {segundo_apellido}</option>
+            <option onClick={this.cargarRol} key={id} id={id}>{nombre} {primer_apellido} {segundo_apellido}</option>
 
           );
         });
       }
 
+      cargarRol(e){
+        const id = e.target.id;
+        var roll = 0;
+        this.setState({
+          usuario: id,
+        })
+        this.state.users.map((item,i)=>{
+            if(item.id == e.target.id){
+                roll = item.rol;
+                this.setState({
+                    rol: roll,
+                    contenido : (<div>
+                        <br></br><br></br>
+                        <p>Usuario seleccionado:</p>
+                        <p><strong>{item.nombre} {item.primer_apellido} {item.segundo_apellido}</strong></p>
+                        <div class="form-group">
+                            <label class="" for="mostrarRoles"></label>
+                            <div class="col-md-4" >
+                                <button onClick= {this.mostrarRol} id="mostrarRoles" name="mostrarRoles" class="btn btn-primary">Mostrar Roles</button>
+                            </div>
+                        </div>
+                    </div>)
+                  })
+            } 
+        })
+      }
 
+    mostrarRol(e){
+        e.preventDefault();
+        this.setState({
+            contenido : <ListaRoles rol={this.state.rol} usuario= {this.state.usuario}></ListaRoles>
+        })
+    }
 
     render(){
         return(
@@ -65,39 +103,7 @@ class VerUsuarios extends Component{
                             <td style={{width: "50%"}}>
                             <div className="form-group" align="left">
                                 <label class="" align="left" for="roles">Lista de roles</label>
-                                <div class="" align="left">
-                                <div className="checkbox">
-                                <label for="roles-0">
-                                    <input type="checkbox" name="roles" id="roles-0" value="1"/>
-                                    Administrador
-                                </label>
-                                </div>
-                                <div className="checkbox">
-                                <label for="roles-1">
-                                    <input type="checkbox" name="roles" id="roles-1" value="2"/>
-                                    Seguridad
-                                </label>
-                                </div>
-                                <div className="checkbox">
-                                <label for="roles-2">
-                                    <input type="checkbox" name="roles" id="roles-2" value="3"/>
-                                    Mantenimiento
-                                </label>
-                                </div>
-                                <div className="checkbox">
-                                <label for="roles-3">
-                                    <input type="checkbox" name="roles" id="roles-3" value="4"/>
-                                    Consultas
-                                </label>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="" for="actualizarRoles"></label>
-                                <div class="col-md-4">
-                                <button id="actualizarRoles" name="actualizarRoles" class="btn btn-primary">Actualizar Roles</button>
-                                </div>
+                                {this.state.contenido}
                             </div>
                             </td>
                         </tr>

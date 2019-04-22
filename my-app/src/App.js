@@ -16,11 +16,13 @@ import Descargas from './formularios/Descargas';
 import Errores from './formularios/Errores';
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+  super(props);
+
     this.state = {
-      contenido : (<div></div>)
-    };
+      contenido : (<div></div>),
+      usuarioActivo : ''
+    }
     this.mostrarCrearUsuario = this.mostrarCrearUsuario.bind(this);
     this.mostrarCambiarContrasenna = this.mostrarCambiarContrasenna.bind(this);
     this.mostrarConsecutivos = this.mostrarConsecutivos.bind(this);
@@ -34,6 +36,7 @@ class App extends Component {
     this.mostrarDescargas = this.mostrarDescargas.bind(this);
     this.mostrarErrores = this.mostrarErrores.bind(this);
   }
+
 
   mostrarCrearUsuario(){
     this.setState({
@@ -244,7 +247,7 @@ class App extends Component {
 
                 <li class="nav-item dropdown no-arrow">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Username</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{this.state.usuarioActivo}</span>
                     <img class="img-profile rounded-circle" src="silueta.gif"/>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

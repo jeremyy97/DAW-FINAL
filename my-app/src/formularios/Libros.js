@@ -1,20 +1,55 @@
 import React, {Component} from 'react';
+import {getLibros} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
 
 import NuevoLibro from './NuevoLibro';
-
+import EditarLibro from './EditarLibro';
 class Libros extends Component{
     constructor(){
         super();
         this.state={
+            libros : [],
             contenido : (<div></div>)
         }
         this.mostrarNuevoLibro = this.mostrarNuevoLibro.bind(this);
+        this.mostrarEditarLibro = this.mostrarEditarLibro.bind(this);
     }
+
+    componentDidMount() {
+        getLibros()
+          .then((res) => {
+            this.setState({
+              libros: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+
 
     mostrarNuevoLibro(){
         this.setState({
           contenido: <NuevoLibro></NuevoLibro>
         })
+    }
+
+    mostrarEditarLibro(e){
+        {this.state.libros.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EditarLibro 
+                    id={item.id}
+                    nombre={item.nombre}
+                    categoria = {item.categoria}
+                    idioma = {item.idioma}
+                    autores = {item.actores}
+                    editorial = {item.editorial}
+                    year = {item.year}
+                    url_descarga = {item.url_descarga}
+                    url_previsualizacion = {item.url_previsualizacion}
+                    ></EditarLibro>
+                })
+            }
+         })}
     }
 
     render(){
@@ -31,24 +66,14 @@ class Libros extends Component{
                                     <th></th>
                                     <th></th>
                                 </tr>
+                                    {this.state.libros.map((item,i)=>{return(
                                     <tr>
-                                    <td>1</td>
-                                    <td>C# Programming</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Harry Potter</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>SQL Server 2012</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.nombre}</td>
+                                        <td><a href="#" id={item.id} onClick={this.mostrarEditarLibro}>Editar</a></td>
+                                        <td><a href="#">Eliminar</a></td>
+                                    </tr>
+                                    ) })}
                             </thead>
                         </table>
                         <div class="form-group">

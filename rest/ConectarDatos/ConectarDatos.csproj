@@ -50,16 +50,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bitacora.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="categoria_libro.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="compra.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="consecutivo.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBDescargasModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDescargasModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBDescargasModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBDescargasModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDescargasModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="EDescargasModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -77,32 +92,32 @@
       <DependentUpon>EDescargasModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="error.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="genero_musica.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="genero_pelicula.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="libro.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="musica.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="parametro.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pelicula.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rol.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -113,12 +128,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="DBDescargasModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBDescargasModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBDescargasModel.edmx.diagram">
+      <DependentUpon>DBDescargasModel.edmx</DependentUpon>
+    </None>
     <None Include="EDescargasModel.edmx.diagram">
       <DependentUpon>EDescargasModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DBDescargasModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBDescargasModel.edmx</DependentUpon>
+      <LastGenOutput>DBDescargasModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBDescargasModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBDescargasModel.edmx</DependentUpon>
+      <LastGenOutput>DBDescargasModel.cs</LastGenOutput>
+    </Content>
     <Content Include="EDescargasModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EDescargasModel.Context.cs</LastGenOutput>

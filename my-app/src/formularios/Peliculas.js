@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {getPeliculas} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
 
 import NuevaPelicula from './NuevaPelicula';
 
@@ -6,10 +7,22 @@ class Peliculas extends Component{
     constructor(){
         super();
         this.state={
+            peliculas: [],
             contenido : (<div></div>)
         }
         this.mostrarNuevaPelicula = this.mostrarNuevaPelicula.bind(this);
     }
+
+    componentDidMount() {
+        getPeliculas()
+          .then((res) => {
+            this.setState({
+              peliculas: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
 
     mostrarNuevaPelicula(){
         this.setState({
@@ -31,24 +44,14 @@ class Peliculas extends Component{
                                     <th></th>
                                     <th></th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Duro de Matar I</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
-                               <tr>
-                                    <td>2</td>
-                                    <td>Scary Movie</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Harry Potter</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
-                                </tr>
+                                {this.state.peliculas.map((item,i)=>{return(
+                                    <tr>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.nombre}</td>
+                                        <td><a href="#">Editar</a></td>
+                                        <td><a href="#">Eliminar</a></td>
+                                    </tr>
+                                ) })}
                             </thead>
                         </table>
                         <div class="form-group">

@@ -68,9 +68,8 @@ class Login extends React.Component{
 
       ingresar = {
         render(){
-            return (<App/>);
+            return (<App></App>);
         }
-        
       }
 
     

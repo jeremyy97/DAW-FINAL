@@ -22,3 +22,22 @@ export function postUsuario({ id, usuario1, contrasenna, nombre, primer_apellido
     }
   })
 }
+
+//PELICULAS
+
+export function getPeliculas() {
+  return axios.get('http://localhost:62402/api/Peliculas');
+}
+
+
+//MUSICA
+
+export function getMusica() {
+  return axios.get('http://localhost:62402/api/Musica');
+}
+
+//LIBROS
+
+export function getLibros() {
+  return axios.get('http://localhost:62402/api/Libros');
+}
