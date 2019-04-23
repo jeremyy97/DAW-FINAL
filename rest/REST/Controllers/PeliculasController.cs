@@ -57,7 +57,7 @@ namespace REST.Controllers
 
 
         [HttpPut]
-        //Modificacion Usuario
+        //Modificacion pelicula
 
         public IHttpActionResult ActualizarPelicula(int id, [FromBody]pelicula pel)
         {

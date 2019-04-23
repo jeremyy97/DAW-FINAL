@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
+import NuevoConsecutivo from './NuevoConsecutivo';
 
 class Consecutivos extends Component{
     constructor(){
         super();
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            contenido : (<div></div>)
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
+        this.mostrarNuevoConsecutivo = this.mostrarNuevoConsecutivo.bind(this)
     }
 
     controlarCambioInput(e){
@@ -25,21 +22,18 @@ class Consecutivos extends Component{
 
     controlarSubmit(e){
         e.preventDefault();
-        this.props.onAddTareas(this.state)
+    }
+
+    mostrarNuevoConsecutivo(){
         this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+            contenido: <NuevoConsecutivo></NuevoConsecutivo>
+          })
     }
 
     render(){
         return(
             <div class="container">
-                <form class="card">
+                <form class="card" onSubmit={this.controlarSubmit}>
                     <fieldset>
                     <legend>Lista de consecutivos</legend>
                     <table id="idTable" class="table">
@@ -73,10 +67,13 @@ class Consecutivos extends Component{
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="nuevo"></label>
                         <div class="col-md-4">
-                            <button id="nuevo" name="nuevo" class="btn btn-primary">Nuevo</button>
+                            <button id="nuevo" name="nuevo" class="btn btn-primary" onClick= {this.mostrarNuevoConsecutivo}>Nuevo</button>
                         </div>
                     </div>
                     </fieldset>
+                    <div>
+                        {this.state.contenido}
+                    </div>
                 </form>
                 <script src="vendor/jquery/jquery.min.js"></script>
                 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
