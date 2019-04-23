@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {getPeliculas} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
+import {getPeliculas} from '../utils/api.js'
 
 import NuevaPelicula from './NuevaPelicula';
 import EditarPelicula from './EditarPelicula';
+import EliminarPelicula from './EliminarPelicula';
 
 class Peliculas extends Component{
     constructor(){
@@ -13,6 +14,7 @@ class Peliculas extends Component{
         }
         this.mostrarNuevaPelicula = this.mostrarNuevaPelicula.bind(this);
         this.mostrarEditarPelicula = this.mostrarEditarPelicula.bind(this);
+        this.mostrarEliminarPelicula = this.mostrarEliminarPelicula.bind(this);
         
     }
 
@@ -48,6 +50,20 @@ class Peliculas extends Component{
          })}
     }
 
+    mostrarEliminarPelicula(e){
+        {this.state.peliculas.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EliminarPelicula 
+                    id= {item.id}
+                    nombre= {item.nombre}
+                   
+                    ></EliminarPelicula>
+                })
+            }
+         })}
+    }
+
     mostrarNuevaPelicula(){
         this.setState({
           contenido: <NuevaPelicula></NuevaPelicula>
@@ -73,7 +89,7 @@ class Peliculas extends Component{
                                         <td key={i}>{item.id}</td>
                                         <td key={i}>{item.nombre}</td>
                                         <td><a id={item.id} onClick={this.mostrarEditarPelicula} href="#">Editar</a></td>
-                                        <td><a href="#">Eliminar</a></td>
+                                        <td><a id={item.id} onClick={this.mostrarEliminarPelicula}  href="#">Eliminar</a></td>
                                     </tr>
                                 ) })}
                             </thead>

@@ -7,8 +7,8 @@ class CrearUsuario extends Component{
         this.state={
        
             contrasennaConfirmar    :'',
-            email:'correo@correo.com',
-            respuesta:'blablabla',
+            email:'',
+            respuesta:'',
 
 
             id:'',
@@ -17,7 +17,7 @@ class CrearUsuario extends Component{
             nombre:'',
             primer_apellido:'',
             segundo_apellido:'',
-            pregunta_seguridad:'blablabla',
+            pregunta_seguridad:'',
             rol:'1'
 
         }
@@ -214,7 +214,7 @@ class CrearUsuario extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="preguntaSeguridad">Pregunta de Seguridad: </label>  
+                                <label class="" for="preguntaSeguridad">Nombre del Primer Profesor: </label>  
                             </td>
                             <td>
                                 <div class="form-group">
@@ -230,7 +230,7 @@ class CrearUsuario extends Component{
                                 </div>      
                             </td>
                             </tr>
-                            <tr>
+                           {/* <tr>
                             <td>
                                 <label class="" for="respuestaSeguridad">Respuesta de Seguridad: </label>
                             </td>
@@ -247,7 +247,7 @@ class CrearUsuario extends Component{
                                 />
                                 </div>
                             </td>
-                            </tr>
+                           </tr>*/}
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">

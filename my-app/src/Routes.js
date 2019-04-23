@@ -3,6 +3,7 @@ import {Route,Switch} from 'react-router-dom';
 import App from './App.js';
 import Begin from './Begin.js';
 import login from './login.js';
+import Pelicula from './formularios/Peliculas'
 
 const AppRoutes = () => 
     <Begin>

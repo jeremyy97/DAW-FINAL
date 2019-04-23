@@ -1,40 +1,53 @@
 import React, {Component} from 'react';
+import { postLibro } from '../utils/api';
 
 class NuevoLibro extends Component{
     constructor(){
         super();
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            id:'',
+            nombre:'',
+            categoria:'',
+            usuario:'1',
+            year:'',
+            idioma:'',
+            actores:'',
+            editorial:'',
+            url_descarga:'',
+            url_previsualizacion:''
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
+        this.cambioCategoria = this.cambioCategoria.bind(this)
     }
 
+    //CONTROLA LA ACTUALIZACION DE LOS INPUT
     controlarCambioInput(e){
         const {value,name} = e.target;
-        console.log(name,value)
+
         this.setState({
             [name]: value
         })
     }
 
-    controlarSubmit(e){
-        e.preventDefault();
-        this.props.onAddTareas(this.state)
-        this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+    //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
+    cambioCategoria(e){
+        this.setState({categoria: e.target.value});
     }
+
+
+   //ENVIAR AL POST PARA CREAR LIBRO
+   controlarSubmit(e){
+    e.preventDefault();
+
+    postLibro(this.state)
+        .then((res) => {
+            console.log(res);
+            alert("Libro agregado")
+            window.location="/menu";
+        })
+        .catch((err) => console.log(err)); 
+}
 
     render(){
         return(
@@ -53,7 +66,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="codigo" name="codigo" type="text" placeholder="" class="form-control input-md"/>
+                                <input 
+                                  type="text" 
+                                  placeholder="" 
+                                  class="form-control" 
+                                  name="id"
+                                  onChange={this.controlarCambioInput}
+                                  value={this.state.id}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -63,7 +83,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                  type="text" 
+                                  placeholder="" 
+                                  class="form-control" 
+                                  name="nombre"
+                                  onChange={this.controlarCambioInput}
+                                  value={this.state.nombre}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -73,7 +100,7 @@ class NuevoLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="categoria" name="categoria" class="form-control">
+                                <select onChange={this.cambioCategoria} value={this.state.categoria} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Fantasia</option>
                                     </select>
@@ -86,7 +113,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                   type="text" 
+                                   placeholder="" 
+                                   class="form-control" 
+                                   name="idioma"
+                                   onChange={this.controlarCambioInput}
+                                   value={this.state.idioma}
+                                />
                                 </div>      
                             </td>
                             </tr>
@@ -96,7 +130,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <textarea class="form-control" id="actores" name="actores"></textarea>
+                                <textarea 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="actores"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.actores}
+                                ></textarea>
                                 </div>      
                             </td>
                             </tr>
@@ -106,7 +147,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="editorial" name="editorial" type="text" placeholder="" class="form-control input-md"></input> 
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="editorial"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.editorial}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -116,7 +164,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="publicacion" name="publicacion" type="text" placeholder="" class="form-control input-md"></input> 
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="year"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.year}
+                                /> 
                                 </div>
                             </td>
                             </tr>
@@ -126,7 +181,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="descargaActual" name="descargaActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_descarga"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_descarga}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -146,7 +208,14 @@ class NuevoLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="previsualizacionActual" name="previsualizacionActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_previsualizacion"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_previsualizacion}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -163,7 +232,7 @@ class NuevoLibro extends Component{
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Aceptar</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>

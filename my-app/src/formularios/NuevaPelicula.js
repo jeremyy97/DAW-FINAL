@@ -1,39 +1,52 @@
 import React, {Component} from 'react';
+import { postPelicula } from '../utils/api';
 
 class NuevaPelicula extends Component{
     constructor(){
         super();
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            id:'',
+            nombre:'',
+            genero:'',
+            year:'',
+            idioma:'',
+            usuario:'1',
+            actores:'',
+            url_descarga:'',
+            url_previsualizacion:''
+
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
+        this.cambioGenero = this.cambioGenero.bind(this)
     }
 
+    //CONTROLA LA ACTUALIZACION DE LOS INPUT
     controlarCambioInput(e){
         const {value,name} = e.target;
-        console.log(name,value)
+
         this.setState({
             [name]: value
         })
     }
 
+    //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
+    cambioGenero(e){
+        this.setState({genero: e.target.value});
+    }
+
+
+    //ENVIAR AL POST PARA CREAR PELICULA
     controlarSubmit(e){
         e.preventDefault();
-        this.props.onAddTareas(this.state)
-        this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+
+        postPelicula(this.state)
+            .then((res) => {
+                console.log(res);
+                alert("Pelicula agregada")
+                window.location="/menu";
+            })
+            .catch((err) => console.log(err)); 
     }
 
     render(){
@@ -53,7 +66,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="codigo" name="codigo" type="text" placeholder="" class="form-control input-md"/>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="id"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.id}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -63,7 +83,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="nombre"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.nombre}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -73,9 +100,12 @@ class NuevaPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="genero" name="genero" class="form-control">
+                                <select  onChange={this.cambioGenero} value={this.state.genero} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Comedia</option>
+                                    <option value="3">Acción</option>
+                                    <option value="4">Drama</option>
+                                    <option value="5">Suspenso</option>
                                     </select>
                                 </div>
                             </td>
@@ -86,7 +116,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="anno" name="anno" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="year"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.year}
+                                />
                                 </div>      
                             </td>
                             </tr>
@@ -96,7 +133,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="idioma"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.idioma}
+                                />
                                 </div>      
                             </td>
                             </tr>
@@ -106,7 +150,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <textarea class="form-control" id="actores" name="actores"></textarea>  
+                                <textarea 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="actores"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.actores}
+                                ></textarea>  
                                 </div>
                             </td>
                             </tr>
@@ -116,7 +167,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="descargaActual" name="descargaActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_descarga"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_descarga}
+                                /> 
                                 </div>
                             </td>
                             </tr>
@@ -136,7 +194,14 @@ class NuevaPelicula extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="previsualizacionActual" name="previsualizacionActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_previsualizacion"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_previsualizacion}
+                                />  
                                 </div>
                             </td>
                             </tr>
@@ -153,7 +218,7 @@ class NuevaPelicula extends Component{
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Aceptar</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>

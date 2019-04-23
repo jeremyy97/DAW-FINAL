@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { putLibro } from '../utils/api';
 
 class EditarLibro extends Component{
     constructor(props){
@@ -10,34 +11,39 @@ class EditarLibro extends Component{
             year: this.props.year,
             idioma: this.props.idioma,
             usuario: this.props.usuario,
-            autores: this.props.autores,
+            actores: this.props.actores,
             editorial : this.props.editorial,
             url_descarga: this.props.url_descarga,
-            url_previsualizacion: this.url_previsualizacion
+            url_previsualizacion: this.props.url_previsualizacion
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
+        this.cambioCategoria = this.cambioCategoria.bind(this)
     }
 
+    //CONTROLA LA ACTUALIZACION DE LOS INPUT
     controlarCambioInput(e){
         const {value,name} = e.target;
-        console.log(name,value)
+
         this.setState({
             [name]: value
         })
     }
 
+    //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
+    cambioCategoria(e){
+        this.setState({categoria: e.target.value});
+    }
+
+
     controlarSubmit(e){
         e.preventDefault();
-        this.props.onAddTareas(this.state)
-        this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+        putLibro(this.state)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+        console.log("Despues del PUT: ",this.state)
+        alert("Libro Actualizado")
+        window.location="/menu";
     }
 
     render(){
@@ -46,18 +52,25 @@ class EditarLibro extends Component{
                 <form class="form-horizontal">
                     <fieldset>
                         <hr class="sidebar-divider"/>
-                        <legend>Editar Libro</legend>
+                        <legend>Crear nuevo Libro</legend>
                         <label class="col-md-4 control-label" for="usuario"></label>  
                         <br></br>
                         <div>
                         <table align="center" >
                             <tr>
                             <td align="left">
-                                <label class="" for="id">Código:</label> 
+                                <label class="" for="codigo">Código:</label> 
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="id" name="id" value={this.state.id} type="text" placeholder="" class="form-control input-md" disabled/>
+                                <input 
+                                  type="text" 
+                                  placeholder="" 
+                                  class="form-control" 
+                                  name="id"
+                                  onChange={this.controlarCambioInput}
+                                  value={this.state.id}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -67,7 +80,14 @@ class EditarLibro extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" onChange={this.controlarCambioInput} name="nombre" value={this.state.nombre} type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                  type="text" 
+                                  placeholder="" 
+                                  class="form-control" 
+                                  name="nombre"
+                                  onChange={this.controlarCambioInput}
+                                  value={this.state.nombre}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -77,7 +97,7 @@ class EditarLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="categoria" onChange={this.controlarCambioInput} name="categoria" value={this.state.categoria}  class="form-control">
+                                <select onChange={this.cambioCategoria} value={this.state.categoria} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Fantasia</option>
                                     </select>
@@ -90,17 +110,31 @@ class EditarLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text"  onChange={this.controlarCambioInput}  value={this.state.idioma} placeholder="" class="form-control input-md"></input>
+                                <input 
+                                   type="text" 
+                                   placeholder="" 
+                                   class="form-control" 
+                                   name="idioma"
+                                   onChange={this.controlarCambioInput}
+                                   value={this.state.idioma}
+                                />
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="autores">Autores</label>    
+                                <label class="" for="actores">Actores</label>    
                             </td>
                             <td>
                                 <div class="form-group">
-                                <textarea class="form-control" id="autores" name="autores" onChange={this.controlarCambioInput}  value={this.state.autores}></textarea>
+                                <textarea 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="actores"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.actores}
+                                ></textarea>
                                 </div>      
                             </td>
                             </tr>
@@ -110,7 +144,14 @@ class EditarLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="editorial" name="editorial" type="text"  onChange={this.controlarCambioInput} value={this.state.editorial} placeholder="" class="form-control input-md"></input> 
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="editorial"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.editorial}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -120,7 +161,31 @@ class EditarLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="publicacion" name="publicacion" type="text"  onChange={this.controlarCambioInput}  value={this.state.year} placeholder="" class="form-control input-md"></input> 
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="year"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.year}
+                                /> 
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="" for="descargaActual">Archivo descarga actual:</label>
+                            </td>
+                            <td> 
+                                <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_descarga"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_descarga}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -130,7 +195,24 @@ class EditarLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="descarga" name="descarga" class="input-file"  type="file"></input>  
+                                <input id="descarga" name="descarga" class="input-file" type="file"></input>  
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="left">
+                                <label class="" for="previsualizacionActual">Archivo pre visualización actual</label>
+                            </td>
+                            <td> 
+                                <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_previsualizacion"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_previsualizacion}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -140,15 +222,14 @@ class EditarLibro extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="previsualización" name="previsualización" class="input-file" type="file" 
-                                ></input>  
+                                <input id="previsualización" name="previsualización" class="input-file" type="file"></input>  
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Aceptar</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>

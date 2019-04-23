@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {getLibros} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
+import {getLibros} from '../utils/api.js'
 
 import NuevoLibro from './NuevoLibro';
 import EditarLibro from './EditarLibro';
+import EliminarLibro from './EliminarLibro';
+
 class Libros extends Component{
     constructor(){
         super();
@@ -12,6 +14,7 @@ class Libros extends Component{
         }
         this.mostrarNuevoLibro = this.mostrarNuevoLibro.bind(this);
         this.mostrarEditarLibro = this.mostrarEditarLibro.bind(this);
+        this.mostrarEliminarLibro = this.mostrarEliminarLibro.bind(this);
     }
 
     componentDidMount() {
@@ -41,12 +44,27 @@ class Libros extends Component{
                     nombre={item.nombre}
                     categoria = {item.categoria}
                     idioma = {item.idioma}
-                    autores = {item.actores}
+                    usuario={item.usuario}
+                    actores = {item.actores}
                     editorial = {item.editorial}
                     year = {item.year}
                     url_descarga = {item.url_descarga}
                     url_previsualizacion = {item.url_previsualizacion}
                     ></EditarLibro>
+                })
+            }
+         })}
+    }
+
+    mostrarEliminarLibro(e){
+        {this.state.libros.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EliminarLibro 
+                    id= {item.id}
+                    nombre= {item.nombre}
+                   
+                    ></EliminarLibro>
                 })
             }
          })}
@@ -70,8 +88,8 @@ class Libros extends Component{
                                     <tr>
                                         <td key={i}>{item.id}</td>
                                         <td key={i}>{item.nombre}</td>
-                                        <td><a href="#" id={item.id} onClick={this.mostrarEditarLibro}>Editar</a></td>
-                                        <td><a href="#">Eliminar</a></td>
+                                        <td><a id={item.id} onClick={this.mostrarEditarLibro}>Editar</a></td>
+                                        <td><a id={item.id} onClick={this.mostrarEliminarLibro}>Eliminar</a></td>
                                     </tr>
                                     ) })}
                             </thead>

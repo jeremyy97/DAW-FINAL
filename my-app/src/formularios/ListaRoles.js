@@ -1,33 +1,44 @@
 import React, {Component} from 'react';
-import {getUsers} from '../utils/api.js'
-
+import {getUsersById} from '../utils/api.js'
+import {putUsuario} from '../utils/api.js'
 
 class ListaRoles extends Component{
     constructor(props){
         super(props);
         this.state={
             rol : this.props.rol,
-            usuario : this.props.usuario,
+            usuarioID : this.props.usuario,
             admin: '',
             seguridad : '',
             mantenimiento : '',
-            consultas : ''
+            consultas : '',
+            user : {
+                contrasenna: '',
+                id: '',
+                nombre: '',
+                pregunta_seguridad: '',
+                primer_apellido: '',
+                rol: '',
+                segundo_apellido: '',
+                usuario1: ''
+            }
         }
         this.cambiarRol = this.cambiarRol.bind(this);
         this.test = this.test.bind(this);
     }
 
     
+
     componentDidMount() {
-        if(this.state.rol == 1){
+        if(this.state.user.rol == 1){
             this.setState({
                 admin: 'checked'
             });
-        } else if(this.state.rol == 2){
+        } else if(this.state.user.rol == 2){
             this.setState({
                 seguridad: 'checked'
             });
-        } else if(this.state.rol == 3){
+        } else if(this.state.user.rol == 3){
             this.setState({
                 mantenimiento: 'checked'
             });
@@ -36,25 +47,47 @@ class ListaRoles extends Component{
                 consultas: 'checked'
             });
         }
+
+        //APENAS MUESTRA LOS ROLES DE ESE USUARIO LO LLAMAMOS DE LA BD Y LO ALMACENAMOS EN NUESTRO OBJETO
+        getUsersById(this.state.usuarioID)
+          .then((res) => {
+            this.setState({
+              user: res.data,
+            });
+           
+          }
+          )
+          .catch((err) => console.log(err));
+         
       }
 
+      //AL GUARDAR ENVIAMOS EL OBJETO A LA BD Y MOSTRAMOS EL RESULTADO EN CONSOLE
       test(e){
         e.preventDefault();
-        console.log(this.state.usuario)
-        console.log(this.state.rol)
+        putUsuario(this.state.user)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        alert("Rol actualizado")
+        console.log("Objeto actualizado: ",this.state.user)
+        console.log("Rol actual: ",this.state.rol)
       }
 
+      //CUANDO CAMBIA EL ROL CAMBIAMOS EL VALOR DE ROL DE NUESTRO OBJETO MANTENIENDO LOS DEMAS ATRIBUTOS
       cambiarRol(e){
         const name= e.target.name;
         const value = e.target.value;
+
         this.setState({
+
             admin:'',
             seguridad:'',
             mantenimiento:'',
             consultas:'',
             [name]: 'checked',
-            rol : value
+            rol : value,
+            user: { ...this.state.user, rol: value  } 
         })
+        
     }
 
     render(){

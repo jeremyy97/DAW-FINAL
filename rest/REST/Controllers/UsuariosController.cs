@@ -96,6 +96,10 @@ namespace REST.Controllers4
             }
         }
 
+
+       
+
+
         [HttpDelete]
         //Eliminar Usuario
 

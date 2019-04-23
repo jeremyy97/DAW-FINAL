@@ -14,7 +14,8 @@ class VerUsuarios extends Component{
             users: [],
             loading: true,
             usuario : 0,
-            rol : 0
+            rol : 0,
+           
         }
         this.cargarRol = this.cargarRol.bind(this);
         this.mostrarRol = this.mostrarRol.bind(this);
@@ -37,7 +38,7 @@ class VerUsuarios extends Component{
     
         return users.map(user => {
           const { id, nombre, primer_apellido, segundo_apellido } = user;
-    
+         
           return (
             <option onClick={this.cargarRol} key={id} id={id}>{nombre} {primer_apellido} {segundo_apellido}</option>
 

@@ -1,39 +1,66 @@
 import React, {Component} from 'react';
+import { postMusica } from '../utils/api';
 
 class NuevaMusica extends Component{
     constructor(){
         super();
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+            id:'',
+            nombre:'',
+            usuario:'1',
+            genero:'',
+            tipo_interpretacion:'',
+            idioma:'',
+            pais:'',
+            disquera:'',
+            disco:'',
+            year:'',
+            url_descarga:'',
+            url_previsualizacion:''
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
+        this.cambioGenero = this.cambioGenero.bind(this)
+        this.cambioTipoInterpretacion = this.cambioTipoInterpretacion.bind(this)
+        this.cambioPais = this.cambioPais.bind(this)
     }
 
-    controlarCambioInput(e){
+     //CONTROLA LA ACTUALIZACION DE LOS INPUT
+     controlarCambioInput(e){
         const {value,name} = e.target;
-        console.log(name,value)
+
         this.setState({
             [name]: value
         })
     }
 
+    //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
+    cambioGenero(e){
+        this.setState({genero: e.target.value});
+    }
+
+    //CONTROLA LA ACTUALIZACION DEL SELECT TIPO INTERPRETACION
+    cambioTipoInterpretacion(e){
+        this.setState({tipo_interpretacion: e.target.value});
+    }
+
+    //CONTROLA LA ACTUALIZACION DEL SELECT PAIS
+    cambioPais(e){
+        this.setState({pais: e.target.value});
+    }
+
+
+    //ENVIAR AL POST PARA CREAR MUSICA
     controlarSubmit(e){
         e.preventDefault();
-        this.props.onAddTareas(this.state)
-        this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+
+        postMusica(this.state)
+            .then((res) => {
+                console.log(res);
+                alert("Música agregada")
+                window.location="/menu";
+            })
+            .catch((err) => console.log(err)); 
     }
 
     render(){
@@ -53,7 +80,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="codigo" name="codigo" type="text" placeholder="" class="form-control input-md"/>
+                                <input
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="id"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.id}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -63,7 +97,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="nombre"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.nombre}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -73,10 +114,10 @@ class NuevaMusica extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="genero" name="genero" class="form-control">
+                                <select onChange={this.cambioGenero} value={this.state.genero} class="form-control">
                                     <option value="1">Rock</option>
                                     <option value="2">Grunge</option>
-                                    </select>
+                                </select>
                                 </div>
                             </td>
                             </tr>
@@ -86,9 +127,9 @@ class NuevaMusica extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="tipo" name="tipo" class="form-control">
-                                <option value="1">No tengo</option>
-                                <option value="2">idea</option>
+                                <select onChange={this.cambioTipoInterpretacion} value={this.state.tipo_interpretacion} class="form-control">
+                                <option value="Individual">Individual</option>
+                                <option value="Grupal">Grupal</option>
                                 </select>   
                                 </div>      
                             </td>
@@ -99,7 +140,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="idioma" name="idioma" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="idioma"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.idioma}
+                                />
                                 </div>      
                             </td>
                             </tr>
@@ -109,8 +157,10 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <select id="pais" name="pais" class="form-control">
-                                    <option value="">Costa Rica</option>
+                                <select onChange={this.cambioPais} value={this.state.pais} class="form-control">
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Irlanda">Irlanda</option>
                                 </select> 
                                 </div>
                             </td>
@@ -121,7 +171,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="disquera" name="disquera" type="text" placeholder="" class="form-control input-md"></input> 
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="disquera"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.disquera}
+                                /> 
                                 </div>
                             </td>
                             </tr>
@@ -131,7 +188,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></input>
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="disco"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.disco}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -141,7 +205,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="anno" name="anno" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="year"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.year}
+                                />
                                 </div>
                             </td>
                             </tr>
@@ -151,7 +222,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="descargaActual" name="descargaActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_descarga"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_descarga}
+                                />  
                                 </div>
                             </td>
                             </tr>
@@ -171,7 +249,14 @@ class NuevaMusica extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="previsualizacionActual" name="previsualizacionActual" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input 
+                                    type="text" 
+                                    placeholder="" 
+                                    class="form-control" 
+                                    name="url_previsualizacion"
+                                    onChange={this.controlarCambioInput}
+                                    value={this.state.url_previsualizacion}
+                                /> 
                                 </div>
                             </td>
                             </tr>
@@ -188,7 +273,7 @@ class NuevaMusica extends Component{
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Aceptar</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>

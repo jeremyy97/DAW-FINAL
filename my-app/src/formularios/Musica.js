@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {getMusica} from '/Users/Jerem/Desktop/DiseñoWeb - Proyecto/DAW-FINAL/my-app/src/utils/api.js'
+import {getMusica} from '../utils/api.js'
 
 import NuevaMusica from './NuevaMusica';
 import EditarMusica from './EditarMusica';
+import EliminarMusica from './EliminarMusica';
 
 class Musica extends Component{
     constructor(){
@@ -13,6 +14,7 @@ class Musica extends Component{
         }
         this.mostrarNuevaMusica = this.mostrarNuevaMusica.bind(this);
         this.mostrarEditarMusica = this.mostrarEditarMusica.bind(this);
+        this.mostrarEliminarMusica = this.mostrarEliminarMusica.bind(this);
         
     }
 
@@ -51,6 +53,20 @@ class Musica extends Component{
          })}
     }
 
+    mostrarEliminarMusica(e){
+        {this.state.canciones.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EliminarMusica 
+                    id= {item.id}
+                    nombre= {item.nombre}
+                   
+                    ></EliminarMusica>
+                })
+            }
+         })}
+    }
+
     mostrarNuevaMusica(){
         this.setState({
             contenido: <NuevaMusica></NuevaMusica>
@@ -75,7 +91,7 @@ class Musica extends Component{
                                         <td key={i}>{item.id}</td>
                                         <td key={i}>{item.nombre}</td>
                                         <td><a id={item.id} onClick={this.mostrarEditarMusica} href="#">Editar</a></td>
-                                        <td><a href="#">Eliminar</a></td>
+                                        <td><a id={item.id} onClick={this.mostrarEliminarMusica} >Eliminar</a></td>
                                     </tr>
                                     ) })}
                                 </thead>
