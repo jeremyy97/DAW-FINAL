@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 class ListaErrores extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            
+            errores : this.props.errores
         }
     }
 
@@ -18,25 +18,17 @@ class ListaErrores extends Component{
                         <table id="idTable" class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Fecha</th>
                                     <th># Error</th>
+                                    <th>Fecha</th>
                                     <th>Mensaje</th>
                                 </tr>
-                                <tr>
-                                    <td>31/12/97</td>
-                                    <td>1</td>
-                                    <td>Error al crear una pelicula</td>
-                                </tr>
-                               <tr>
-                                    <td>4/12/2019</td>
-                                    <td>2</td>
-                                    <td>Error al descargar un libro</td>
-                                </tr>
-                                <tr>
-                                    <td>4/12/2019</td>
-                                    <td>3</td>
-                                    <td>Error al descargar una pelicula</td>
-                                </tr>
+                                {this.state.errores.map((item,i)=>{return(
+                                    <tr>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.fecha}</td>
+                                        <td key={i}>{item.descripcion}</td>
+                                    </tr>
+                                ) })}
                             </thead>
                         </table>
                     </fieldset>

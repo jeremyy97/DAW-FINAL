@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import ListaErrores from './ListaErrores';
 
+import {getErrores} from '../utils/api.js';
+
 class Errores extends Component{
     constructor(){
         super();
@@ -12,16 +14,29 @@ class Errores extends Component{
             email:'',
             preguntaSeguridad: '',
             respuestaSeguridad: '',
-            contenido : (<div></div>)
+            contenido : (<div></div>),
+            errores : []
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.mostrarListaErrores = this.mostrarListaErrores.bind(this)
     }
 
+    componentDidMount() {
+        getErrores()
+          .then((res) => {
+            this.setState({
+              errores: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+
     mostrarListaErrores(){
+        console.log(this.state.errores)
         this.setState({
-          contenido: <ListaErrores></ListaErrores>
+          contenido: <ListaErrores errores={this.state.errores}></ListaErrores>
         })
     }
 
@@ -64,11 +79,11 @@ class Errores extends Component{
                             <td>
                                 <div class="form-group">
                                 <select id="fecha" name="fecha" class="form-control">
-                                    <option value="1">Diaria</option>
-                                    <option value="2">Semanal</option>
-                                    <option value="3">Mensual</option>
-                                    <option value="4">Trimestral</option>
-                                    <option value="5">Semestral</option>
+                                    <option value="1">Dia</option>
+                                    <option value="2">Semana</option>
+                                    <option value="3">Mes</option>
+                                    <option value="4">Trimestre</option>
+                                    <option value="5">Semestre</option>
                                     <option value="5">Todos</option>
                                     </select>
                                 </div>   

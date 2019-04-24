@@ -1,12 +1,26 @@
 import React, {Component} from 'react';
+import {getBitacora} from '../utils/api';
 
 class ListaConsultas extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            
+            bitacora : this.props.bitacora,
+            usuario : this.props.usuario,
+            tipo : this.props.tipo,
+            mostrarBitacora : []
         }
     }
+
+    componentDidMount() {
+        this.state.bitacora.map((item,i)=>{
+            if(item.usuario == this.state.usuario){
+                this.setState({
+                    mostrarBitacora : [...this.state.mostrarBitacora,item]
+                })
+            }
+         })
+      }
 
     render(){
         return(
@@ -23,24 +37,14 @@ class ListaConsultas extends Component{
                                     <th>Descripcion</th>
                                     <th>Ver registro</th>
                                 </tr>
-                                <tr>
-                                    <td>123</td>
-                                    <td>31/12/97</td>
-                                    <td>Se agrego una pelicula</td>
-                                    <td>Ver registro</td>
-                                </tr>
-                               <tr>
-                                    <td>456</td>
-                                    <td>4/10/2019</td>
-                                    <td>Se agrego musica nueva</td>
-                                    <td>Ver registro</td>
-                                </tr>
-                                <tr>
-                                    <td>789</td>
-                                    <td>4/10/2019</td>
-                                    <td>Se agrego un libro</td>
-                                    <td>Ver registro</td>
-                                </tr>
+                                {this.state.bitacora.map((item,i)=>{return(
+                                    <tr>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.usuario}</td>
+                                        <td key={i}>{item.fecha}</td>
+                                        <td key={i}>{item.descripcion}</td>
+                                    </tr>
+                                ) })}
                             </thead>
                         </table>
                     </fieldset>

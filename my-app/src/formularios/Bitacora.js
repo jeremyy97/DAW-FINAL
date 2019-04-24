@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-import {getBitacora} from '../utils/api';
 import ListaConsultas from './ListaConsultas';
+import {getBitacora} from '../utils/api';
 
 class Bitacora extends Component{
     constructor(){
         super();
         this.state={
-            bitacora : [],
-            contenido : (<div></div>)
+            contenido : (<div></div>),
+            usuario : '',
+            tipo : '',
+            bitacora : []
         }
         this.mostrarListaConsultas = this.mostrarListaConsultas.bind(this);
+        this.controlarCambioInput = this.controlarCambioInput.bind(this);
     }
 
     componentDidMount() {
@@ -23,38 +26,33 @@ class Bitacora extends Component{
           .catch((err) => console.log(err));
       }
 
-    mostrarListaConsultas(){
+    controlarCambioInput(e){
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name,value)
         this.setState({
-          contenido: <ListaConsultas></ListaConsultas>
+            usuario : value
+        })
+    }
+
+    mostrarListaConsultas(e){
+        e.preventDefault();
+        console.log(this.state.bitacora)
+        this.setState({
+          contenido: <ListaConsultas 
+          usuario={this.state.usuario}
+          tipo = {this.state.tipo}
+          bitacora = {this.state.bitacora}
+          ></ListaConsultas>
         })
     }
 
     render(){
         return(
             <div class="container">
-                <form class="card">
+                <form class="">
                     <fieldset>
                         <legend>Bitacora</legend>
-                        <table id="idTable" class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                    <th>Detalle</th>
-                                    <th>Producto</th>
-                                </tr>
-                                {this.state.bitacora.map((item,i)=>{return(
-                                    <tr>
-                                        <td key={i}>{item.id}</td>
-                                        <td key={i}>{item.usuario}</td>
-                                        <td key={i}>{item.fecha}</td>
-                                        <td key={i}>{item.descripcion}</td>
-                                        <td key={i}>{item.producto}</td>
-                                    </tr>
-                                ) })}
-                            </thead>
-                        </table>
                     </fieldset>
                 </form>
                 <script src="vendor/jquery/jquery.min.js"></script>
@@ -64,7 +62,7 @@ class Bitacora extends Component{
 
                 <script src="js/sb-admin-2.min.js"></script>
 
-                <form class="form-horizontal">
+                <form class="card">
                 <fieldset>
                     <hr class="sidebar-divider"/>
                     <legend>Consultar acciones</legend>
@@ -78,27 +76,7 @@ class Bitacora extends Component{
                         </td>
                         <td>
                             <div class="form-group">
-                            <input id="usuario" name="usuario" type="text" placeholder="" class="form-control input-md"/>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td align="left"> 
-                            <label class="" for="fechaInicio">Fecha inicio:</label>  
-                        </td>
-                        <td >
-                            <div class="form-group">
-                            <input id="fechaInicio" name="fechaInicio" type="text" placeholder="" class="form-control input-md"></input>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td align="left">
-                            <label class="" for="fechaFinal">Fecha Final:</label>  
-                        </td>
-                        <td>
-                            <div class="form-group">
-                            <input id="fechaFinal" name="fechaFinal" type="text" placeholder="" class="form-control input-md"></input>
+                            <input id="usuario" name="usuario" type="text" onChange={this.controlarCambioInput} placeholder="" class="form-control input-md"/>
                             </div>
                         </td>
                         </tr>
@@ -111,7 +89,7 @@ class Bitacora extends Component{
                             <select id="tipo" name="tipo" class="form-control">
                                 <option value="1">Agregar</option>
                                 <option value="2">Eliminar</option>
-                                <option value="2">Todas</option>
+                                <option value="3">Todas</option>
                                 </select>
                             </div>      
                         </td>

@@ -24,5 +24,23 @@ namespace REST.Controllers
             }
         }
 
+        [HttpPost]
+        //INSERTAR UN REGISTRO EN BITACORA
+
+        public IHttpActionResult AgregaPelicula([FromBody]bitacora bit)
+        {
+            if (ModelState.IsValid)
+            {
+                dbContext.bitacoras.Add(bit);
+                dbContext.SaveChanges();
+                return Ok(bit);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
     }
 }
