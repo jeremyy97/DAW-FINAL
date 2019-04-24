@@ -38,7 +38,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="consecutivo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="prefijo" Type="varchar" MaxLength="30" />
@@ -201,7 +201,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="consecutivo1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prefijo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

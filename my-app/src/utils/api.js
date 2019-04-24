@@ -193,6 +193,22 @@ export function deleteLibro(id) {
 
 //CONSECUTIVOS
 
-export function getLibros() {
+export function getConsecutivos() {
   return axios.get('http://localhost:62402/api/Consecutivo');
+}
+
+export function postConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inicial,rango_final,usuario}) {
+  return axios({
+    method: 'post',
+    url: 'http://localhost:62402/api/Consecutivo',
+    data: {
+      id,
+      descripcion,
+      consecutivo1,
+      prefijo,
+      rango_inicial,
+      rango_final,
+      usuario
+    }
+  })
 }

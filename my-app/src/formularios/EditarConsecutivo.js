@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 
-import { postConsecutivo } from '../utils/api';
-class NuevoConsecutivo extends Component{
+import { postLibro } from '../utils/api';
+
+class EditarConsecutivo extends Component{
     constructor(props){
         super(props);
         this.state={
-            id : this.props.id +1,
-            descripcion: '',
-            consecutivo: '',
+            id : this.props.id,
+            descripcion: this.props.descripcion,
+            consecutivo: this.props.consecutivo,
             prefijoCheck : true,
-            prefijo: '',
+            prefijo: this.props.prefijo,
             rangoCheck : true,
-            rangoInicial: '',
-            rangoFinal: '',
-            usuario:'1',
+            rangoInicial: this.props.rangoInicial,
+            rangoFinal: this.props.rangoFinal
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
@@ -36,14 +36,15 @@ class NuevoConsecutivo extends Component{
         this.setState({descripcion: e.target.value});
     }
 
-    
+
    //ENVIAR AL POST PARA CREAR LIBRO
    controlarSubmit(e){
     e.preventDefault();
-    postConsecutivo(this.state)
+
+    postLibro(this.state)
         .then((res) => {
             console.log(res);
-            alert("Consecutivo agregado")
+            alert("Libro agregado")
             window.location="/menu";
         })
         .catch((err) => console.log(err)); 
@@ -67,11 +68,21 @@ class NuevoConsecutivo extends Component{
                 <form class="form-horizontal">
                     <fieldset>
                         <hr class="sidebar-divider"/>
-                        <legend>Crear nuevo Consecutivo</legend>
+                        <legend>Editar Consecutivo</legend>
                         <label class="col-md-4 control-label" for="usuario"></label>  
                         <br></br>
                         <div>
                         <table align="center" >
+                        <tr>
+                            <td align="left"> 
+                                <label class="" for="id">ID:</label>   
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                <input id="id" onChange={this.controlarCambioInput} name="id" value={this.state.id} type="text" placeholder="" class="form-control input-md" disabled/>
+                                </div>
+                            </td>
+                            </tr>
                             <tr>
                             <td align="left">
                                 <label class="" for="selectDescripcion">Descripción</label>
@@ -136,11 +147,11 @@ class NuevoConsecutivo extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class=""  for="rangoInicial">Rango Inicial:</label>  
+                                <label class="" onChange={this.controlarCambioInput} for="rangoInicial">Rango Inicial:</label>  
                             </td>
                             <td> 
                                 <div class="form-group">
-                                    <input id="rangoInicial" onChange={this.controlarCambioInput} name="rangoInicial" type="text" value={this.state.rangoInicial} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
+                                    <input id="rangoInicial" name="rangoInicial" type="text" value={this.state.rangoInicial} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
                                 </div>
                             </td>
                             </tr>
@@ -157,7 +168,7 @@ class NuevoConsecutivo extends Component{
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Crear Consecutivo</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Actualizar Consecutivo</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>
@@ -177,4 +188,4 @@ class NuevoConsecutivo extends Component{
     }
 }
 
-export default NuevoConsecutivo;
+export default EditarConsecutivo;

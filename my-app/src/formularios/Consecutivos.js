@@ -1,16 +1,31 @@
 import React, {Component} from 'react';
+import { getConsecutivos } from '../utils/api';
 import NuevoConsecutivo from './NuevoConsecutivo';
+import EditarConsecutivo from './EditarConsecutivo';
 
 class Consecutivos extends Component{
     constructor(){
         super();
         this.state={
+            consecutivos: [],
             contenido : (<div></div>)
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.mostrarNuevoConsecutivo = this.mostrarNuevoConsecutivo.bind(this)
+        this.mostrarEditarConsecutivo = this.mostrarEditarConsecutivo.bind(this)
     }
+
+    componentDidMount() {
+        getConsecutivos()
+          .then((res) => {
+            this.setState({
+              consecutivos: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
 
     controlarCambioInput(e){
         const {value,name} = e.target;
@@ -24,10 +39,31 @@ class Consecutivos extends Component{
         e.preventDefault();
     }
 
-    mostrarNuevoConsecutivo(){
-        this.setState({
-            contenido: <NuevoConsecutivo></NuevoConsecutivo>
-          })
+    mostrarNuevoConsecutivo(e){
+        {this.state.consecutivos.map((item,i)=>{
+            this.setState({
+                contenido: <NuevoConsecutivo 
+                id = {item.id}
+                ></NuevoConsecutivo>
+            })
+        })}
+    }
+
+    mostrarEditarConsecutivo(e){
+        {this.state.consecutivos.map((item,i)=>{
+            if(item.id == e.target.id){
+                this.setState({
+                    contenido: <EditarConsecutivo 
+                    id = {item.id}
+                    descripcion = {item.descripcion}
+                    consecutivo = {item.consecutivo1}
+                    prefijo = {item.prefijo}
+                    rangoInicial = {item.rango_inicial}
+                    rangoFinal = {item.rango_final}
+                    ></EditarConsecutivo>
+                })
+            }
+         })}
     }
 
     render(){
@@ -44,24 +80,15 @@ class Consecutivos extends Component{
                                 <th>Consecutivo</th>
                                 <th></th>
                             </tr>
-                             <tr>
-                                <td>1</td>
-                                <td>Tarifas</td>
-                                <td>1</td>
-                                <td>Editar</td>
+                            {this.state.consecutivos.map((item,i)=>{return(
+                            <tr>
+                                <td key={i}>{item.id}</td>
+                                <td key={i}>{item.descripcion}</td>
+                                <td key={i}>{item.consecutivo1}</td>
+                                <td><a id={item.id} onClick={this.mostrarEditarConsecutivo} href="#">Editar</a></td>
                             </tr>
-                                <tr>
-                                <td>2</td>
-                                <td>Productos y Servicios</td>
-                                <td>2</td>
-                                <td>Editar</td>
-                            </tr>
-                                <tr>
-                                <td>3</td>
-                                <td>Anuncios</td>
-                                <td>5</td>
-                                <td>Editar</td>
-                            </tr>
+                            ) })}
+                            
                         </thead>
                     </table>
                     <div class="form-group">
