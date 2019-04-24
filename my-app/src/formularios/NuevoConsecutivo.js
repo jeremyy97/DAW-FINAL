@@ -7,12 +7,12 @@ class NuevoConsecutivo extends Component{
         this.state={
             id : this.props.id +1,
             descripcion: '',
-            consecutivo: '',
+            consecutivo1: '',
             prefijoCheck : true,
             prefijo: '',
             rangoCheck : true,
-            rangoInicial: '',
-            rangoFinal: '',
+            rango_inicial: '',
+            rango_final: '',
             usuario:'1',
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
@@ -39,6 +39,15 @@ class NuevoConsecutivo extends Component{
     
    //ENVIAR AL POST PARA CREAR LIBRO
    controlarSubmit(e){
+
+    console.log("ID: ",this.state.id);
+    console.log("Descripcion: ",this.state.descripcion);
+    console.log("Consecutivo: ",this.state.consecutivo1);
+    console.log("Prefijo: ",this.state.prefijo);
+    console.log("Inicio: ",this.state.rango_inicial);
+    console.log("Fin: ",this.state.rango_final);
+    console.log("Usuario: ",this.state.usuario);
+
     e.preventDefault();
     postConsecutivo(this.state)
         .then((res) => {
@@ -78,11 +87,12 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="selectbasic" onChange={this.cambioDescripcion} name="selectbasic" value={this.state.descripcion} class="form-control">
-                                    <option value="Libros">Libros</option>
-                                    <option value="Peliculas">Peliculas</option>
+                                <select  onChange={this.cambioDescripcion}  value={this.state.descripcion} class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="Libro">Libro</option>
+                                    <option value="Pelicula">Pelicula</option>
                                     <option value="Musica">Musica</option>
-                                    <option value="Compras">Compras</option>
+                                    <option value="Compra">Compra</option>
                                     <option value="Cuenta">Cuenta</option>
                                 </select>
                                 </div>
@@ -94,7 +104,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="consecutivo" onChange={this.controlarCambioInput} name="consecutivo" value={this.state.consecutivo} type="text" placeholder="" class="form-control input-md"/>
+                                <input id="consecutivo" onChange={this.controlarCambioInput} name="consecutivo1" value={this.state.consecutivo1} type="text" placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
@@ -140,7 +150,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                    <input id="rangoInicial" onChange={this.controlarCambioInput} name="rangoInicial" type="text" value={this.state.rangoInicial} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
+                                    <input id="rangoInicial" onChange={this.controlarCambioInput} name="rango_inicial" type="text" value={this.state.rango_inicial} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
                                 </div>
                             </td>
                             </tr>
@@ -150,7 +160,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                    <input id="rangoFinal" onChange={this.controlarCambioInput}  name="rangoFinal" type="text" value={this.state.rangoFinal} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
+                                    <input id="rangoFinal" onChange={this.controlarCambioInput}  name="rango_final" type="text" value={this.state.rango_final} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
                                 </div>
                             </td>
                             </tr>

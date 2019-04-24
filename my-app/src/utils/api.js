@@ -212,3 +212,19 @@ export function postConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inici
     }
   })
 }
+
+export function putConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inicial,rango_final,usuario}) {
+  return axios({
+    method: 'put',
+    url: 'http://localhost:62402/api/Consecutivo/'+id,
+    data: {
+      id,
+      descripcion,
+      consecutivo1,
+      prefijo,
+      rango_inicial,
+      rango_final,
+      usuario
+    }
+  })
+}
