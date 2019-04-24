@@ -190,3 +190,9 @@ export function putLibro({ id, nombre, categoria,usuario,year,idioma,actores,edi
 export function deleteLibro(id) {
   return axios.delete('http://localhost:62402/api/Libros/'+id);
 }
+
+//CONSECUTIVOS
+
+export function getLibros() {
+  return axios.get('http://localhost:62402/api/Consecutivo');
+}

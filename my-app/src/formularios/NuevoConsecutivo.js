@@ -2,23 +2,22 @@ import React, {Component} from 'react';
 import { postLibro } from '../utils/api';
 
 class NuevoConsecutivo extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            id:'',
-            nombre:'',
-            categoria:'',
-            usuario:'1',
-            year:'',
-            idioma:'',
-            actores:'',
-            editorial:'',
-            url_descarga:'',
-            url_previsualizacion:''
+            descripcion: this.props.descripcion,
+            consecutivo: this.props.consecutivo,
+            prefijoCheck : true,
+            prefijo: this.props.prefijo,
+            rangoCheck : true,
+            rangoInicial: this.props.rangoInicial,
+            rangoFinal: this.props.rangoFinal
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
-        this.cambioCategoria = this.cambioCategoria.bind(this)
+        this.cambioDescripcion = this.cambioDescripcion.bind(this)
+        this.activarPrefijo = this.activarPrefijo.bind(this)
+        this.activarRango = this.activarRango.bind(this)
     }
 
     //CONTROLA LA ACTUALIZACION DE LOS INPUT
@@ -30,9 +29,9 @@ class NuevoConsecutivo extends Component{
         })
     }
 
-    //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
-    cambioCategoria(e){
-        this.setState({categoria: e.target.value});
+    //CONTROLA LA ACTUALIZACION DE LA DESCRIPCION
+    cambioDescripcion(e){
+        this.setState({descripcion: e.target.value});
     }
 
 
@@ -48,6 +47,18 @@ class NuevoConsecutivo extends Component{
         })
         .catch((err) => console.log(err)); 
 }
+
+    activarPrefijo(e){
+        this.setState({
+            prefijoCheck : !this.state.prefijoCheck
+        })
+    }
+
+    activarRango(e){
+        this.setState({
+            rangoCheck : !this.state.rangoCheck
+        })
+    }
 
     render(){
         return(
@@ -66,12 +77,12 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                    <option value="1">Libros</option>
-                                    <option value="2">Peliculas</option>
-                                    <option value="3">Musica</option>
-                                    <option value="4">Compras</option>
-                                    <option value="5">Cuenta</option>
+                                <select id="selectbasic" onChange={this.cambioDescripcion} name="selectbasic" value={this.state.descripcion} class="form-control">
+                                    <option value="Libros">Libros</option>
+                                    <option value="Peliculas">Peliculas</option>
+                                    <option value="Musica">Musica</option>
+                                    <option value="Compras">Compras</option>
+                                    <option value="Cuenta">Cuenta</option>
                                 </select>
                                 </div>
                             </td>
@@ -82,7 +93,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="consecutivo" name="consecutivo" type="text" placeholder="" class="form-control input-md"/>
+                                <input id="consecutivo" onChange={this.controlarCambioInput} name="consecutivo" value={this.state.consecutivo} type="text" placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
@@ -92,11 +103,11 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                <label class="checkbox-inline" for="prefijoCheck-0">
-                                    <input type="checkbox" name="prefijoCheck" id="prefijoCheck-0" value="1"/>
+                                <label class="checkbox-inline" for="prefijoCheck-0" >
+                                    <input type="checkbox" name="prefijoCheck" onClick={this.activarPrefijo} value="1"/>
                                     Sí
                                 </label>
-                                </div>
+                                </div> 
                             </td>
                             </tr>
                             <tr>
@@ -105,7 +116,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input id="prefijo" name="prefijo" type="text" placeholder="" class="form-control input-md"/>
+                                    <input id="prefijo"  onChange={this.controlarCambioInput} name="prefijo" type="text"  value={this.state.prefijo} placeholder="" class="form-control input-md" disabled={this.state.prefijoCheck}/>
                                 </div>      
                             </td>
                             </tr>
@@ -116,7 +127,7 @@ class NuevoConsecutivo extends Component{
                             <td align="left">
                                 <div class="form-group">
                                     <label class="checkbox-inline" for="rangoCheck-0">
-                                    <input type="checkbox" name="rangoCheck" id="rangoCheck-0" value="1"/>
+                                    <input type="checkbox" name="rangoCheck" onClick={this.activarRango} id="rangoCheck-0" value="false"/>
                                     Sí
                                     </label>
                                 </div>      
@@ -124,11 +135,11 @@ class NuevoConsecutivo extends Component{
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="rangoInicial">Rango Inicial:</label>  
+                                <label class="" onChange={this.controlarCambioInput} for="rangoInicial">Rango Inicial:</label>  
                             </td>
                             <td> 
                                 <div class="form-group">
-                                    <input id="rangoInicial" name="rangoInicial" type="text" placeholder="" class="form-control input-md"/>
+                                    <input id="rangoInicial" name="rangoInicial" type="text" value={this.state.rangoInicial} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
                                 </div>
                             </td>
                             </tr>
@@ -138,24 +149,7 @@ class NuevoConsecutivo extends Component{
                             </td>
                             <td> 
                                 <div class="form-group">
-                                    <input id="rangoFinal" name="rangoFinal" type="text" placeholder="" class="form-control input-md"/>
-                                </div>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td align="left">
-                                <label class="" for="descargaActual">Archivo descarga actual:</label>
-                            </td>
-                            <td> 
-                                <div class="form-group">
-                                <input 
-                                    type="text" 
-                                    placeholder="" 
-                                    class="form-control" 
-                                    name="url_descarga"
-                                    onChange={this.controlarCambioInput}
-                                    value={this.state.url_descarga}
-                                />
+                                    <input id="rangoFinal" onChange={this.controlarCambioInput}  name="rangoFinal" type="text" value={this.state.Final} placeholder="" class="form-control input-md" disabled={this.state.rangoCheck}/>
                                 </div>
                             </td>
                             </tr>
