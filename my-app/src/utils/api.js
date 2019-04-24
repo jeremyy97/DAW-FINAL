@@ -228,3 +228,8 @@ export function putConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inicia
     }
   })
 }
+
+//BICATORA
+export function getBitacora() {
+  return axios.get('http://localhost:62402/api/Bitacora');
+}

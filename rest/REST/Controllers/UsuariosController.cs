@@ -51,7 +51,7 @@ namespace REST.Controllers4
 
 
         [HttpPost]
-        //CREAR USUARIO
+        //CREAR USUARIO 
 
         public IHttpActionResult AgregaUsuario([FromBody]usuario usu)
         {

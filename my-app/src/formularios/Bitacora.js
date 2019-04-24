@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
-
+import {getBitacora} from '../utils/api';
 import ListaConsultas from './ListaConsultas';
 
 class Bitacora extends Component{
     constructor(){
         super();
         this.state={
+            bitacora : [],
             contenido : (<div></div>)
         }
         this.mostrarListaConsultas = this.mostrarListaConsultas.bind(this);
     }
 
+    componentDidMount() {
+        getBitacora()
+          .then((res) => {
+            this.setState({
+              bitacora: res.data,
+              loading: false,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
 
     mostrarListaConsultas(){
         this.setState({
@@ -27,43 +38,21 @@ class Bitacora extends Component{
                         <table id="idTable" class="table">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th>ID</th>
                                     <th>Usuario</th>
                                     <th>Fecha</th>
-                                    <th>Registro</th>
-                                    <th>Tipo</th>
-                                    <th>Descripcion</th>
                                     <th>Detalle</th>
+                                    <th>Producto</th>
                                 </tr>
-                                <tr>
-                                    <td>admin</td>
-                                    <td>31/12/97</td>
-                                    <td>1223456</td>
-                                    <td>Agregar</td>
-                                    <td>Insersion de nueva pelicula</td>
-                                    <td>Codigo=Pel1|Nombre=Prueba|Genero=1|Año=1995|Idioma=Ingles|Actores=Prueb
-                                        aActor;Pruebactor1|NomArchDescarga=pel1.zip|NomArchPreVisua=pel1pre.mpg
-                                    </td>
-                                </tr>
-                               <tr>
-                                    <td>admin</td>
-                                    <td>31/12/97</td>
-                                    <td>1223456</td>
-                                    <td>Agregar</td>
-                                    <td>Insersion de nueva pelicula</td>
-                                    <td>Codigo=Pel1|Nombre=Prueba|Genero=1|Año=1995|Idioma=Ingles|Actores=Prueb
-                                        aActor;Pruebactor1|NomArchDescarga=pel1.zip|NomArchPreVisua=pel1pre.mpg
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>admin</td>
-                                    <td>31/12/97</td>
-                                    <td>1223456</td>
-                                    <td>Agregar</td>
-                                    <td>Insersion de nueva pelicula</td>
-                                    <td>Codigo=Pel1|Nombre=Prueba|Genero=1|Año=1995|Idioma=Ingles|Actores=Prueb
-                                        aActor;Pruebactor1|NomArchDescarga=pel1.zip|NomArchPreVisua=pel1pre.mpg
-                                    </td>
-                                </tr>
+                                {this.state.bitacora.map((item,i)=>{return(
+                                    <tr>
+                                        <td key={i}>{item.id}</td>
+                                        <td key={i}>{item.usuario}</td>
+                                        <td key={i}>{item.fecha}</td>
+                                        <td key={i}>{item.descripcion}</td>
+                                        <td key={i}>{item.producto}</td>
+                                    </tr>
+                                ) })}
                             </thead>
                         </table>
                     </fieldset>
