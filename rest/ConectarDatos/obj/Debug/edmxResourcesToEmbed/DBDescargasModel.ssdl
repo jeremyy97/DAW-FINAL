@@ -100,13 +100,14 @@
   </EntityType>
   <EntityType Name="parametro">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="preLib" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="previsualizacion" Type="varchar" MaxLength="300" Nullable="false" />
-    <Property Name="almacenamiento" Type="varchar" MaxLength="300" Nullable="false" />
-    <Property Name="tipo" Type="int" Nullable="false" />
-    <Property Name="usuario" Type="int" Nullable="false" />
+    <Property Name="preLib" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="almLib" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="prePel" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="almPel" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="preMus" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="almMus" Type="varchar" MaxLength="300" Nullable="false" />
   </EntityType>
   <EntityType Name="pelicula">
     <Key>

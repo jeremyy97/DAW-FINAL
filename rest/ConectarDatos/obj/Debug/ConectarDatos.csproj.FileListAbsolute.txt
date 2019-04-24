@@ -22,18 +22,6 @@ C:\Users\Josue\Desktop\REST - CORS\ConectarDatos\obj\Debug\ConectarDatos.csproj.
 C:\Users\Josue\Desktop\REST - CORS\ConectarDatos\obj\Debug\ConectarDatos.csproj.CopyComplete
 C:\Users\Josue\Desktop\REST - CORS\ConectarDatos\obj\Debug\ConectarDatos.dll
 C:\Users\Josue\Desktop\REST - CORS\ConectarDatos\obj\Debug\ConectarDatos.pdb
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.dll.config
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.dll
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.pdb
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.dll
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.xml
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csprojAssemblyReference.cache
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csproj.CoreCompileInputs.cache
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csproj.CopyComplete
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.dll
-C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.pdb
 C:\Users\Josue\Desktop\restV2\ConectarDatos\bin\Debug\ConectarDatos.dll.config
 C:\Users\Josue\Desktop\restV2\ConectarDatos\bin\Debug\ConectarDatos.dll
 C:\Users\Josue\Desktop\restV2\ConectarDatos\bin\Debug\ConectarDatos.pdb
@@ -46,3 +34,15 @@ C:\Users\Josue\Desktop\restV2\ConectarDatos\obj\Debug\ConectarDatos.csproj.CoreC
 C:\Users\Josue\Desktop\restV2\ConectarDatos\obj\Debug\ConectarDatos.csproj.CopyComplete
 C:\Users\Josue\Desktop\restV2\ConectarDatos\obj\Debug\ConectarDatos.dll
 C:\Users\Josue\Desktop\restV2\ConectarDatos\obj\Debug\ConectarDatos.pdb
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.dll.config
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.dll
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\ConectarDatos.pdb
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.dll
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.xml
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csproj.CoreCompileInputs.cache
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csproj.CopyComplete
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.dll
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.pdb
+C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\ConectarDatos\obj\Debug\ConectarDatos.csprojAssemblyReference.cache

@@ -111,11 +111,12 @@
     <EntitySetMapping Name="parametroes">
       <EntityTypeMapping TypeName="DBDescargasModel.parametro">
         <MappingFragment StoreEntitySet="parametro">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="previsualizacion" ColumnName="previsualizacion" />
-          <ScalarProperty Name="almacenamiento" ColumnName="almacenamiento" />
-          <ScalarProperty Name="tipo" ColumnName="tipo" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="preLib" ColumnName="preLib" />
+          <ScalarProperty Name="almLib" ColumnName="almLib" />
+          <ScalarProperty Name="prePel" ColumnName="prePel" />
+          <ScalarProperty Name="almPel" ColumnName="almPel" />
+          <ScalarProperty Name="preMus" ColumnName="preMus" />
+          <ScalarProperty Name="almMus" ColumnName="almMus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

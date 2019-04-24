@@ -76,21 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBDescargasModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EDescargasModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EDescargasModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EDescargasModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EDescargasModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EDescargasModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EDescargasModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="error.cs">
       <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
@@ -121,12 +106,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EDescargasModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EDescargasModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="DBDescargasModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -135,10 +114,10 @@
     <None Include="DBDescargasModel.edmx.diagram">
       <DependentUpon>DBDescargasModel.edmx</DependentUpon>
     </None>
-    <None Include="EDescargasModel.edmx.diagram">
-      <DependentUpon>EDescargasModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DBDescargasModel.Context.tt">
@@ -151,19 +130,6 @@
       <DependentUpon>DBDescargasModel.edmx</DependentUpon>
       <LastGenOutput>DBDescargasModel.cs</LastGenOutput>
     </Content>
-    <Content Include="EDescargasModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EDescargasModel.Context.cs</LastGenOutput>
-      <DependentUpon>EDescargasModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="EDescargasModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EDescargasModel.edmx</DependentUpon>
-      <LastGenOutput>EDescargasModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

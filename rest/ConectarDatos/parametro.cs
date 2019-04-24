@@ -14,10 +14,11 @@ namespace ConectarDatos
     
     public partial class parametro
     {
-        public int id { get; set; }
-        public string previsualizacion { get; set; }
-        public string almacenamiento { get; set; }
-        public int tipo { get; set; }
-        public int usuario { get; set; }
+        public string preLib { get; set; }
+        public string almLib { get; set; }
+        public string prePel { get; set; }
+        public string almPel { get; set; }
+        public string preMus { get; set; }
+        public string almMus { get; set; }
     }
 }

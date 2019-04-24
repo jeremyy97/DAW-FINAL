@@ -100,13 +100,14 @@
   </EntityType>
   <EntityType Name="parametro">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="preLib" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="previsualizacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="almacenamiento" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="tipo" Type="Int32" Nullable="false" />
-    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <Property Name="preLib" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="almLib" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prePel" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="almPel" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preMus" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="almMus" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="pelicula">
     <Key>
