@@ -1,19 +1,45 @@
 import React, {Component} from 'react';
+import {getParametros} from '../utils/api.js'
+import {postParametro} from '../utils/api.js'
+import {deleteParametro} from '../utils/api.js'
 
 class Parametros extends Component{
     constructor(){
         super();
         this.state={
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
+           
+                preLib:'',
+                almLib:'',
+                prePel:'',
+                almPel:'',
+                preMus:'',
+                almMus:'',
+            
+                primary:''
+          
+  
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
     }
+
+    componentDidMount() {
+        getParametros()
+          .then((res) => {
+            this.setState({
+              preLib: res.data[0].preLib,
+              almLib: res.data[0].almLib,
+              prePel: res.data[0].prePel,
+              almPel: res.data[0].almPel,
+              preMus: res.data[0].preMus,
+              almMus: res.data[0].almMus,
+              primary: res.data[0].preLib
+            });
+          })
+          .catch((err) => console.log(err));
+
+
+      }
 
     controlarCambioInput(e){
         const {value,name} = e.target;
@@ -25,15 +51,19 @@ class Parametros extends Component{
 
     controlarSubmit(e){
         e.preventDefault();
-        this.props.onAddTareas(this.state)
-        this.setState({
-            usuario:'',
-            contrasenna:'',
-            contrasennaConfirmar    :'',
-            email:'',
-            preguntaSeguridad: '',
-            respuestaSeguridad: ''
-        }) 
+        {/***
+        deleteParametro(this.state.primary)
+        .then((res) =>{
+            console.log("PARAMETRO ELIMINADO")
+        } )
+        .catch((err) => console.log(err));
+
+        postParametro(this.state.preLib,this.state.almLib,this.state.prePel,this.state.almPel,this.state.preMus,this.state.almMus)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+        console.log("Despues del POST: ",this.state)  */}
+        alert("Parametro Actualizado")
+        window.location="/menu";
     }
 
     render(){
@@ -48,68 +78,68 @@ class Parametros extends Component{
                         <table align="center" >
                             <tr>
                             <td align="left">
-                                <label class="" for="rutaPrePdf">Ruta almacenamiento pre visualización libros PDF:</label>  
+                                <label class="" for="preLib">Ruta almacenamiento pre visualización libros PDF:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="rutaPrePdf" name="rutaPrePdf" type="text" placeholder="" class="form-control input-md"/>
+                                <input id="preLib" name="preLib" onChange={this.controlarCambioInput} value={this.state.preLib}type="text" placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left"> 
-                                <label class="" for="rutaPDF">Ruta almacenamiento libros PDF:</label>   
+                                <label class="" for="almLib">Ruta almacenamiento libros PDF:</label>   
                             </td>
                             <td >
                                 <div class="form-group">
-                                <input id="rutaPDF" name="rutaPDF" type="text" placeholder="" class="form-control input-md"/>
+                                <input id="almLib" name="almLib" type="text" onChange={this.controlarCambioInput}  value={this.state.almLib} placeholder="" class="form-control input-md"/>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="rutaPrePel">Ruta almacenamiento pre visualización películas:</label>   
+                                <label class="" for="prePel">Ruta almacenamiento pre visualización películas:</label>   
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="rutaPrePel" name="rutaPrePel" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="prePel" name="prePel" type="text" onChange={this.controlarCambioInput} value={this.state.prePel} placeholder="" class="form-control input-md"></input>
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="rutaPel">Ruta almacenamiento películas:</label>        
+                                <label class="" for="almPel">Ruta almacenamiento películas:</label>        
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="rutaPel" name="rutaPel" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="almPel" name="almPel" type="text" onChange={this.controlarCambioInput} value={this.state.almPel} placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="rutaPreMus">Ruta almacenamieto pre visualización Música:</label>  
+                                <label class="" for="preMus">Ruta almacenamieto pre visualización Música:</label>  
                             </td>
                             <td>
                                 <div class="form-group">
-                                <input id="rutaPreMus" name="rutaPreMus" type="text" placeholder="" class="form-control input-md"></input>
+                                <input id="preMus" name="preMus" type="text" onChange={this.controlarCambioInput} value={this.state.preMus} placeholder="" class="form-control input-md"></input>
                                 </div>      
                             </td>
                             </tr>
                             <tr>
                             <td align="left">
-                                <label class="" for="rutaMus">Ruta almacenamiento películas:</label> 
+                                <label class="" for="almMus">Ruta almacenamiento películas:</label> 
                             </td>
                             <td> 
                                 <div class="form-group">
-                                <input id="rutaMus" name="rutaMus" type="text" placeholder="" class="form-control input-md"></input>  
+                                <input id="almMus" name="almMus" type="text" placeholder="" onChange={this.controlarCambioInput} value={this.state.almMus} class="form-control input-md"></input>  
                                 </div>
                             </td>
                             </tr>
                             <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                                <button id="aceptar" name="aceptar" class="btn btn-primary" onClick={this.controlarSubmit}>Aceptar</button>
                                 <button id="cancelar" name="cancelar" class="btn btn-default">Cancelar</button>
                                 </div>
                             </td>

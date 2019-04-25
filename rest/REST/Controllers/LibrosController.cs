@@ -32,7 +32,7 @@ namespace REST.Controllers
         {
             using (DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return dbdescargarentities.libroes.FirstOrDefault(e => e.id == id);
+                return dbdescargarentities.libroes.FirstOrDefault(e => e.id.Equals(id));
             }
         }
 
@@ -56,11 +56,11 @@ namespace REST.Controllers
 
         [HttpPut]
         //Modificacion Libros
-        public IHttpActionResult ActualizarLibros(int id, [FromBody]libro lib)
+        public IHttpActionResult ActualizarLibros(string id, [FromBody]libro lib)
         {
             if (ModelState.IsValid)
             {
-                var LibroExiste = dbContext.libroes.Count(c => c.id == id) > 0;
+                var LibroExiste = dbContext.libroes.Count(c => c.id.Equals(id)) > 0;
 
                 if (LibroExiste)
                 {
@@ -87,7 +87,7 @@ namespace REST.Controllers
 
         [HttpDelete]
         //Eliminar Libro
-        public IHttpActionResult EliminarLibro(int id)
+        public IHttpActionResult EliminarLibro(string id)
         {
             var lib = dbContext.libroes.Find(id);
 

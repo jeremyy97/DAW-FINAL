@@ -25,9 +25,9 @@ namespace REST.Controllers
         }
 
         [HttpPost]
-        //INSERTAR UN REGISTRO EN BITACORA
+        //CREAR BITACORA
 
-        public IHttpActionResult AgregaPelicula([FromBody]bitacora bit)
+        public IHttpActionResult AgregaBitacora([FromBody]bitacora bit)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +40,6 @@ namespace REST.Controllers
                 return BadRequest();
             }
         }
-
 
     }
 }

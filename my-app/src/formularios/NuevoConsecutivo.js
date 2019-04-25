@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
 import { postConsecutivo } from '../utils/api';
+import { hoyFecha } from '../utils/api';
+import { postErrores } from '../utils/api';
+
 class NuevoConsecutivo extends Component{
     constructor(props){
         super(props);
@@ -14,12 +17,39 @@ class NuevoConsecutivo extends Component{
             rango_inicial: '',
             rango_final: '',
             usuario:'1',
+            error: {
+                id:'',
+                fecha:'',
+                descripcion:'',
+                usuario:'1'
+            }
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.cambioDescripcion = this.cambioDescripcion.bind(this)
         this.activarPrefijo = this.activarPrefijo.bind(this)
         this.activarRango = this.activarRango.bind(this)
+        this.enviarError = this.enviarError.bind(this)
+    }
+
+    
+    enviarError(desc){
+        var f = hoyFecha()
+        var ids = Math.round(Math.random() * (1000 - 0) + 0)
+
+        this.setState({
+            error:{ ...this.state.error, id:ids, fecha: f, descripcion: desc}
+        },()=>{
+            console.log("Id",this.state.error.id)
+            console.log("Fecha",this.state.error.fecha)
+            console.log("Descr",this.state.error.descripcion)
+            console.log("User",this.state.error.usuario)
+            postErrores(this.state.error)
+                      .then((res) => {
+                          console.log(res);
+                      })
+                      .catch((err) => console.log(err)); 
+        })
     }
 
     //CONTROLA LA ACTUALIZACION DE LOS INPUT
@@ -40,13 +70,7 @@ class NuevoConsecutivo extends Component{
    //ENVIAR AL POST PARA CREAR LIBRO
    controlarSubmit(e){
 
-    console.log("ID: ",this.state.id);
-    console.log("Descripcion: ",this.state.descripcion);
-    console.log("Consecutivo: ",this.state.consecutivo1);
-    console.log("Prefijo: ",this.state.prefijo);
-    console.log("Inicio: ",this.state.rango_inicial);
-    console.log("Fin: ",this.state.rango_final);
-    console.log("Usuario: ",this.state.usuario);
+ 
 
     e.preventDefault();
     postConsecutivo(this.state)
@@ -55,7 +79,7 @@ class NuevoConsecutivo extends Component{
             alert("Consecutivo agregado")
             window.location="/menu";
         })
-        .catch((err) => console.log(err)); 
+        .catch((err) => this.enviarError(err)); 
 }
 
     activarPrefijo(e){

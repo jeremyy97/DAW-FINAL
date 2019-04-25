@@ -33,7 +33,7 @@ namespace REST.Controllers
         {
             using (DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return dbdescargarentities.peliculas.FirstOrDefault(e => e.id == id);
+                return dbdescargarentities.peliculas.FirstOrDefault(e => e.id.Equals(id));
             }
         }
 
@@ -59,11 +59,11 @@ namespace REST.Controllers
         [HttpPut]
         //Modificacion pelicula
 
-        public IHttpActionResult ActualizarPelicula(int id, [FromBody]pelicula pel)
+        public IHttpActionResult ActualizarPelicula(string id, [FromBody]pelicula pel)
         {
             if (ModelState.IsValid)
             {
-                var PeliculaExiste = dbContext.peliculas.Count(c => c.id == id) > 0;
+                var PeliculaExiste = dbContext.peliculas.Count(c => c.id.Equals(id)) > 0;
 
                 if (PeliculaExiste)
                 {
@@ -91,7 +91,7 @@ namespace REST.Controllers
         [HttpDelete]
         //Eliminar Pelicula
 
-        public IHttpActionResult EliminarPelicula(int id)
+        public IHttpActionResult EliminarPelicula(string id)
         {
             var pel = dbContext.peliculas.Find(id);
 

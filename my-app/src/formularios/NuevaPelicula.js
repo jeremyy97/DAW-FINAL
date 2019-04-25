@@ -1,53 +1,125 @@
 import React, {Component} from 'react';
 import { postPelicula } from '../utils/api';
 
+//CONSECUTIVO A ID
+import { getConsecutivoById } from '../utils/api';
+import { putConsecutivo } from '../utils/api';
+
+
 class NuevaPelicula extends Component{
     constructor(){
         super();
         this.state={
-            id:'',
-            nombre:'',
-            genero:'',
-            year:'',
-            idioma:'',
-            usuario:'1',
-            actores:'',
-            url_descarga:'',
-            url_previsualizacion:''
+            pelicula:{
+                id:'',
+                nombre:'',
+                genero:'',
+                year:'',
+                idioma:'',
+                usuario:'1',
+                actores:'',
+                url_descarga:'',
+                url_previsualizacion:'',
+            },
+            
+            consecutivo: {
+                id:'',
+                descripcion:'',
+                consecutivo1:'',
+                prefijo:'',
+                rango_inicial:'',
+                rango_final:'',
+                usuario:''
+            },
 
+          
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.cambioGenero = this.cambioGenero.bind(this)
+       
+       
     }
+
+   
 
     //CONTROLA LA ACTUALIZACION DE LOS INPUT
     controlarCambioInput(e){
         const {value,name} = e.target;
 
         this.setState({
-            [name]: value
+
+            pelicula :{ ...this.state.pelicula,  [name]: value } 
         })
     }
 
     //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
     cambioGenero(e){
-        this.setState({genero: e.target.value});
+        this.setState({pelicula :{ ...this.state.pelicula, genero: e.target.value } });
+       
     }
 
+    componentDidMount(){
+        getConsecutivoById("1")
+        .then((res) => {
+          this.setState({
+            consecutivo: res.data,
+          });
+          console.log("Consecutivo: ",this.state.consecutivo)
+        }
+        )
+        .catch((err) => console.log(err));
+    }
+
+  
 
     //ENVIAR AL POST PARA CREAR PELICULA
     controlarSubmit(e){
         e.preventDefault();
+        
+        var contador = parseInt(this.state.consecutivo.consecutivo1) + 1
+        var rangoF = this.state.consecutivo.rango_final
+        console.log("Contador",contador,"Final",rangoF)
 
-        postPelicula(this.state)
-            .then((res) => {
-                console.log(res);
-                alert("Pelicula agregada")
-                window.location="/menu";
-            })
-            .catch((err) => console.log(err)); 
-    }
+        if (contador < rangoF){
+            var idC = this.state.consecutivo.prefijo.concat(contador)
+            console.log("idC",idC)
+            this.setState({
+                pelicula: {... this.state.pelicula, id: idC},
+                consecutivo: { ...this.state.consecutivo, consecutivo1: contador  } 
+            },() => {
+                
+                
+                      putConsecutivo(this.state.consecutivo)
+                        .then((res) => console.log(res))
+                        .catch((err) => console.log(err));
+                      console.log("Despues del PUT: ",this.state.consecutivo)
+                      console.log("ID",this.state.pelicula.id)
+                      console.log("nombre",this.state.pelicula.nombre)
+                      console.log("genero",this.state.pelicula.genero)
+                   
+
+                      postPelicula(this.state.pelicula)
+                      .then((res) => {
+                          console.log(res);
+                          alert("Pelicula agregada")
+                          window.location="/menu";
+                      })
+                      .catch((err) => console.log(err)); 
+            
+                    }
+  
+            )
+          
+           
+        }else{
+                alert("No hay consecutivos para asignar")
+        }
+        
+      
+
+     }
+
 
     render(){
         return(
@@ -60,6 +132,7 @@ class NuevaPelicula extends Component{
                         <br></br>
                         <div>
                         <table align="center" >
+                        {/** 
                             <tr>
                             <td align="left">
                                 <label class="" for="codigo">Código:</label> 
@@ -77,6 +150,7 @@ class NuevaPelicula extends Component{
                                 </div>
                             </td>
                             </tr>
+                            */}
                             <tr>
                             <td align="left"> 
                                 <label class="" for="nombre">Nombre:</label>  
@@ -89,7 +163,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="nombre"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.nombre}
+                                    value={this.state.pelicula.nombre}
                                 />
                                 </div>
                             </td>
@@ -100,7 +174,7 @@ class NuevaPelicula extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select  onChange={this.cambioGenero} value={this.state.genero} class="form-control">
+                                <select  onChange={this.cambioGenero} value={this.state.pelicula.genero} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Comedia</option>
                                     <option value="3">Acción</option>
@@ -122,7 +196,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="year"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.year}
+                                    value={this.state.pelicula.year}
                                 />
                                 </div>      
                             </td>
@@ -139,7 +213,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="idioma"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.idioma}
+                                    value={this.state.pelicula.idioma}
                                 />
                                 </div>      
                             </td>
@@ -156,7 +230,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="actores"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.actores}
+                                    value={this.state.pelicula.actores}
                                 ></textarea>  
                                 </div>
                             </td>
@@ -173,7 +247,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="url_descarga"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.url_descarga}
+                                    value={this.state.pelicula.url_descarga}
                                 /> 
                                 </div>
                             </td>
@@ -200,7 +274,7 @@ class NuevaPelicula extends Component{
                                     class="form-control" 
                                     name="url_previsualizacion"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.url_previsualizacion}
+                                    value={this.state.pelicula.url_previsualizacion}
                                 />  
                                 </div>
                             </td>

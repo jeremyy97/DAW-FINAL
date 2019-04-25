@@ -101,6 +101,9 @@
     <Compile Include="rol.cs">
       <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>DBDescargasModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="usuario.cs">
       <DependentUpon>DBDescargasModel.tt</DependentUpon>
     </Compile>

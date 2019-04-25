@@ -463,3 +463,6 @@ C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\REST\bin\es\System.W
 C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\REST\obj\Debug\REST.csproj.CopyComplete
 C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\REST\obj\Debug\REST.dll
 C:\Users\Jerem\Desktop\DiseñoWeb - Proyecto\DAW-FINAL\rest\REST\obj\Debug\REST.pdb
+C:\Users\Josue\Desktop\REST\REST\bin\System.Web.Cors.dll
+C:\Users\Josue\Desktop\REST\REST\bin\System.Web.Http.Cors.dll
+C:\Users\Josue\Desktop\REST\REST\bin\System.Web.Http.Cors.xml

@@ -3,18 +3,23 @@ import { getConsecutivos } from '../utils/api';
 import NuevoConsecutivo from './NuevoConsecutivo';
 import EditarConsecutivo from './EditarConsecutivo';
 
+
 class Consecutivos extends Component{
     constructor(){
         super();
         this.state={
             consecutivos: [],
             contenido : (<div></div>)
+            
+
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.mostrarNuevoConsecutivo = this.mostrarNuevoConsecutivo.bind(this)
         this.mostrarEditarConsecutivo = this.mostrarEditarConsecutivo.bind(this)
+      
     }
+
 
     componentDidMount() {
         getConsecutivos()

@@ -32,7 +32,7 @@ namespace REST.Controllers
         {
             using (DBDescargasEntities dbdescargarentities = new DBDescargasEntities())
             {
-                return dbdescargarentities.musicas.FirstOrDefault(e => e.id == id);
+                return dbdescargarentities.musicas.FirstOrDefault(e => e.id.Equals(id));
             }
         }
 
@@ -56,11 +56,11 @@ namespace REST.Controllers
 
         [HttpPut]
         //Modificacion Musica
-        public IHttpActionResult ActualizarMusica(int id, [FromBody]musica mus)
+        public IHttpActionResult ActualizarMusica(string id, [FromBody]musica mus)
         {
             if (ModelState.IsValid)
             {
-                var MusicaExiste = dbContext.musicas.Count(c => c.id == id) > 0;
+                var MusicaExiste = dbContext.musicas.Count(c => c.id.Equals(id)) > 0;
 
                 if (MusicaExiste)
                 {
@@ -87,7 +87,7 @@ namespace REST.Controllers
 
         [HttpDelete]
         //Eliminar Musica
-        public IHttpActionResult EliminarMusica(int id)
+        public IHttpActionResult EliminarMusica(string id)
         {
             var mus = dbContext.musicas.Find(id);
 

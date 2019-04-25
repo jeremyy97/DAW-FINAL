@@ -71,6 +71,7 @@ class EditarMusica extends Component{
                     <br></br>
                     <div>
                     <table align="center" >
+                    {/** 
                         <tr>
                         <td align="left">
                             <label class="" for="codigo">Código:</label> 
@@ -88,6 +89,7 @@ class EditarMusica extends Component{
                             </div>
                         </td>
                         </tr>
+                        */}
                         <tr>
                         <td align="left"> 
                             <label class="" for="nombre">Nombre:</label>  

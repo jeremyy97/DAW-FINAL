@@ -116,7 +116,7 @@ class App extends Component {
         <div id="wrapper">
           <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:3000/menu">
               <div class="sidebar-brand-icon rotate-n-15">
                 <i ><img src="logo.png" width="50px;"/></i>
               </div>
@@ -126,7 +126,7 @@ class App extends Component {
             <hr class="sidebar-divider my-0"/>
 
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="http://localhost:3000/menu">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Inicio</span></a>
             </li>

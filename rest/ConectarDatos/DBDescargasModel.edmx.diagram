@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2cc34923cb284de1934c4f86e0bfd19e" Name="Diagram1">
+      <Diagram DiagramId="f1a61fb6f8544315bd22dcc3be860f47" Name="Diagram1">
         <EntityTypeShape EntityType="DBDescargasModel.bitacora" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDescargasModel.categoria_libro" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDescargasModel.compra" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -17,7 +17,8 @@
         <EntityTypeShape EntityType="DBDescargasModel.parametro" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDescargasModel.pelicula" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDescargasModel.rol" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBDescargasModel.usuario" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDescargasModel.sysdiagram" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDescargasModel.usuario" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,52 +1,108 @@
 import React, {Component} from 'react';
 import { postLibro } from '../utils/api';
 
+//CONSECUTIVO A ID
+import { getConsecutivoById } from '../utils/api';
+import { putConsecutivo } from '../utils/api';
+
 class NuevoLibro extends Component{
     constructor(){
         super();
         this.state={
-            id:'',
-            nombre:'',
-            categoria:'',
-            usuario:'1',
-            year:'',
-            idioma:'',
-            actores:'',
-            editorial:'',
-            url_descarga:'',
-            url_previsualizacion:''
+            libro:{
+                id:'',
+                nombre:'',
+                categoria:'',
+                usuario:'1',
+                year:'',
+                idioma:'',
+                actores:'',
+                editorial:'',
+                url_descarga:'',
+                url_previsualizacion:''
+            },
+            consecutivo: {
+                id:'',
+                descripcion:'',
+                consecutivo1:'',
+                prefijo:'',
+                rango_inicial:'',
+                rango_final:'',
+                usuario:''
+            }
+            
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
         this.cambioCategoria = this.cambioCategoria.bind(this)
     }
 
-    //CONTROLA LA ACTUALIZACION DE LOS INPUT
-    controlarCambioInput(e){
+     //CONTROLA LA ACTUALIZACION DE LOS INPUT
+     controlarCambioInput(e){
         const {value,name} = e.target;
 
         this.setState({
-            [name]: value
+
+            libro :{ ...this.state.libro,  [name]: value } 
         })
     }
 
     //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
     cambioCategoria(e){
-        this.setState({categoria: e.target.value});
+        this.setState({libro :{ ...this.state.libro, categoria: e.target.value } });
+    }
+
+    componentDidMount(){
+        getConsecutivoById("3")
+        .then((res) => {
+          this.setState({
+            consecutivo: res.data,
+          });
+          console.log("Consecutivo: ",this.state.consecutivo)
+        }
+        )
+        .catch((err) => console.log(err));
     }
 
 
    //ENVIAR AL POST PARA CREAR LIBRO
    controlarSubmit(e){
     e.preventDefault();
+    var contador = parseInt(this.state.consecutivo.consecutivo1) + 1
+    var rangoF = this.state.consecutivo.rango_final
+    console.log("Contador",contador,"Final",rangoF)
 
-    postLibro(this.state)
-        .then((res) => {
-            console.log(res);
-            alert("Libro agregado")
-            window.location="/menu";
-        })
-        .catch((err) => console.log(err)); 
+    if (contador < rangoF){
+        var idC = this.state.consecutivo.prefijo.concat(contador)
+        console.log("idC",idC)
+        this.setState({
+            libro: {... this.state.libro, id: idC},
+            consecutivo: { ...this.state.consecutivo, consecutivo1: contador  } 
+        },() => {
+            
+            
+                  putConsecutivo(this.state.consecutivo)
+                    .then((res) => console.log(res))
+                    .catch((err) => console.log(err));
+              
+               
+
+                  postLibro(this.state.libro)
+                  .then((res) => {
+                      console.log(res);
+                      alert("Libro agregada")
+                      window.location="/menu";
+                  })
+                  .catch((err) => console.log(err)); 
+        
+                }
+
+        )
+      
+       
+    }else{
+            alert("No hay consecutivos para asignar")
+    }
 }
 
     render(){
@@ -60,6 +116,7 @@ class NuevoLibro extends Component{
                         <br></br>
                         <div>
                         <table align="center" >
+                            {/** 
                             <tr>
                             <td align="left">
                                 <label class="" for="codigo">Código:</label> 
@@ -77,6 +134,7 @@ class NuevoLibro extends Component{
                                 </div>
                             </td>
                             </tr>
+                            */}
                             <tr>
                             <td align="left"> 
                                 <label class="" for="nombre">Nombre:</label>  
@@ -89,7 +147,7 @@ class NuevoLibro extends Component{
                                   class="form-control" 
                                   name="nombre"
                                   onChange={this.controlarCambioInput}
-                                  value={this.state.nombre}
+                                  value={this.state.libro.nombre}
                                 />
                                 </div>
                             </td>
@@ -100,7 +158,7 @@ class NuevoLibro extends Component{
                             </td>
                             <td>
                                 <div class="form-group">
-                                <select onChange={this.cambioCategoria} value={this.state.categoria} class="form-control">
+                                <select onChange={this.cambioCategoria} value={this.state.libro.categoria} class="form-control">
                                     <option value="1">Terror</option>
                                     <option value="2">Fantasia</option>
                                     </select>
@@ -119,7 +177,7 @@ class NuevoLibro extends Component{
                                    class="form-control" 
                                    name="idioma"
                                    onChange={this.controlarCambioInput}
-                                   value={this.state.idioma}
+                                   value={this.state.libro.idioma}
                                 />
                                 </div>      
                             </td>
@@ -136,7 +194,7 @@ class NuevoLibro extends Component{
                                     class="form-control" 
                                     name="actores"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.actores}
+                                    value={this.state.libro.actores}
                                 ></textarea>
                                 </div>      
                             </td>
@@ -153,7 +211,7 @@ class NuevoLibro extends Component{
                                     class="form-control" 
                                     name="editorial"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.editorial}
+                                    value={this.state.libro.editorial}
                                 />
                                 </div>
                             </td>
@@ -170,7 +228,7 @@ class NuevoLibro extends Component{
                                     class="form-control" 
                                     name="year"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.year}
+                                    value={this.state.libro.year}
                                 /> 
                                 </div>
                             </td>
@@ -187,7 +245,7 @@ class NuevoLibro extends Component{
                                     class="form-control" 
                                     name="url_descarga"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.url_descarga}
+                                    value={this.state.libro.url_descarga}
                                 />
                                 </div>
                             </td>
@@ -214,7 +272,7 @@ class NuevoLibro extends Component{
                                     class="form-control" 
                                     name="url_previsualizacion"
                                     onChange={this.controlarCambioInput}
-                                    value={this.state.url_previsualizacion}
+                                    value={this.state.libro.url_previsualizacion}
                                 />
                                 </div>
                             </td>

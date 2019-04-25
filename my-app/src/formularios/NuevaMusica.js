@@ -1,22 +1,39 @@
 import React, {Component} from 'react';
 import { postMusica } from '../utils/api';
 
+//CONSECUTIVO A ID
+import { getConsecutivoById } from '../utils/api';
+import { putConsecutivo } from '../utils/api';
+
 class NuevaMusica extends Component{
     constructor(){
         super();
         this.state={
-            id:'',
-            nombre:'',
-            usuario:'1',
-            genero:'',
-            tipo_interpretacion:'',
-            idioma:'',
-            pais:'',
-            disquera:'',
-            disco:'',
-            year:'',
-            url_descarga:'',
-            url_previsualizacion:''
+            musica:{
+                id:'',
+                nombre:'',
+                usuario:'1',
+                genero:'',
+                tipo_interpretacion:'',
+                idioma:'',
+                pais:'',
+                disquera:'',
+                disco:'',
+                year:'',
+                url_descarga:'',
+                url_previsualizacion:''
+            },
+
+            consecutivo: {
+                id:'',
+                descripcion:'',
+                consecutivo1:'',
+                prefijo:'',
+                rango_inicial:'',
+                rango_final:'',
+                usuario:''
+            }
+           
         }
         this.controlarCambioInput = this.controlarCambioInput.bind(this)
         this.controlarSubmit = this.controlarSubmit.bind(this)
@@ -30,23 +47,37 @@ class NuevaMusica extends Component{
         const {value,name} = e.target;
 
         this.setState({
-            [name]: value
+
+            musica :{ ...this.state.musica,  [name]: value } 
         })
     }
 
     //CONTROLA LA ACTUALIZACION DEL SELECT GENERO
     cambioGenero(e){
-        this.setState({genero: e.target.value});
+        this.setState({musica :{ ...this.state.musica, genero: e.target.value } });
     }
 
     //CONTROLA LA ACTUALIZACION DEL SELECT TIPO INTERPRETACION
     cambioTipoInterpretacion(e){
-        this.setState({tipo_interpretacion: e.target.value});
+
+        this.setState({musica :{ ...this.state.musica, tipo_interpretacion: e.target.value } });
     }
 
     //CONTROLA LA ACTUALIZACION DEL SELECT PAIS
     cambioPais(e){
-        this.setState({pais: e.target.value});
+        this.setState({musica :{ ...this.state.musica, pais: e.target.value } });
+    }
+
+    componentDidMount(){
+        getConsecutivoById("2")
+        .then((res) => {
+          this.setState({
+            consecutivo: res.data,
+          });
+          console.log("Consecutivo: ",this.state.consecutivo)
+        }
+        )
+        .catch((err) => console.log(err));
     }
 
 
@@ -54,13 +85,43 @@ class NuevaMusica extends Component{
     controlarSubmit(e){
         e.preventDefault();
 
-        postMusica(this.state)
-            .then((res) => {
-                console.log(res);
-                alert("Música agregada")
-                window.location="/menu";
-            })
-            .catch((err) => console.log(err)); 
+         
+        var contador = parseInt(this.state.consecutivo.consecutivo1) + 1
+        var rangoF = this.state.consecutivo.rango_final
+        console.log("Contador",contador,"Final",rangoF)
+
+        if (contador < rangoF){
+            var idC = this.state.consecutivo.prefijo.concat(contador)
+            console.log("idC",idC)
+            this.setState({
+                musica: {... this.state.musica, id: idC},
+                consecutivo: { ...this.state.consecutivo, consecutivo1: contador  } 
+            },() => {
+                
+                
+                      putConsecutivo(this.state.consecutivo)
+                        .then((res) => console.log(res))
+                        .catch((err) => console.log(err));
+                  
+                   
+
+                      postMusica(this.state.musica)
+                      .then((res) => {
+                          console.log(res);
+                          alert("Música agregada")
+                          window.location="/menu";
+                      })
+                      .catch((err) => console.log(err)); 
+            
+                    }
+  
+            )
+          
+           
+        }else{
+                alert("No hay consecutivos para asignar")
+        }
+         
     }
 
     render(){
@@ -74,6 +135,7 @@ class NuevaMusica extends Component{
                         <br></br>
                         <div>
                         <table align="center" >
+                        {/** 
                             <tr>
                             <td align="left">
                                 <label class="" for="codigo">Código:</label> 
@@ -91,6 +153,7 @@ class NuevaMusica extends Component{
                                 </div>
                             </td>
                             </tr>
+                            */}
                             <tr>
                             <td align="left"> 
                                 <label class="" for="nombre">Nombre:</label>  

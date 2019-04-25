@@ -197,6 +197,10 @@ export function getConsecutivos() {
   return axios.get('http://localhost:62402/api/Consecutivo');
 }
 
+export function getConsecutivoById(id) {
+  return axios.get('http://localhost:62402/api/Consecutivo/'+id);
+}
+
 export function postConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inicial,rango_final,usuario}) {
   return axios({
     method: 'post',
@@ -232,4 +236,85 @@ export function putConsecutivo({id,descripcion,consecutivo1,prefijo,rango_inicia
 //BICATORA
 export function getBitacora() {
   return axios.get('http://localhost:62402/api/Bitacora');
+}
+
+export function postBitacora({id,producto,fecha,descripcion}) {
+  return axios({
+    method: 'post',
+    url: 'http://localhost:62402/api/Consecutivo',
+    data: {
+      id,
+      producto,
+      fecha,
+      descripcion
+    }
+  })
+}
+
+//ERRORES
+
+export function getErrores() {
+  return axios.get('http://localhost:62402/api/Errores');
+}
+
+export function postErrores({id,fecha,descripcion,usuario}) {
+  return axios({
+    method: 'post',
+    url: 'http://localhost:62402/api/Errores',
+    data: {
+      id,
+      fecha,
+      descripcion,
+      usuario
+    }
+  })
+}
+
+//PARAMETROS
+
+export function getParametros() {
+  return axios.get('http://localhost:62402/api/Parametro');
+}
+
+export function postParametro({preLib,almLib,prePel,almPel,preMus, almMus}) {
+  return axios({
+    method: 'post',
+    url: 'http://localhost:62402/api/Parametro',
+    data: {
+      preLib,
+      almLib,
+      prePel,
+      almPel,
+      preMus,
+      almMus
+    }
+  })
+}
+
+export function deleteParametro(preLib) {
+  return axios.delete('http://localhost:62402/api/Parametro/'+preLib);
+}
+
+//FECHA
+
+
+function addZero(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    return i;
+}
+
+
+
+export function hoyFecha(){
+  var hoy = new Date();
+      var dd = hoy.getDate();
+      var mm = hoy.getMonth()+1;
+      var yyyy = hoy.getFullYear();
+      
+      dd = addZero(dd);
+      mm = addZero(mm);
+
+      return yyyy+'-'+mm+'-'+dd;
 }
